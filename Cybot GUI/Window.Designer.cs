@@ -30,16 +30,16 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CyBotGUI));
             this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.ConnectButton = new System.Windows.Forms.Button();
+            this.logBox = new System.Windows.Forms.ListBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearLogsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearGraphToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitAltF4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.forwardButton = new System.Windows.Forms.Button();
+            this.rightButton = new System.Windows.Forms.Button();
+            this.leftButton = new System.Windows.Forms.Button();
             this.forwardValue = new System.Windows.Forms.TextBox();
             this.leftValue = new System.Windows.Forms.TextBox();
             this.rightValue = new System.Windows.Forms.TextBox();
@@ -50,31 +50,30 @@
             // 
             // maskedTextBox1
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(12, 27);
+            this.maskedTextBox1.Location = new System.Drawing.Point(0, 0);
             this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(209, 20);
-            this.maskedTextBox1.TabIndex = 0;
-            this.maskedTextBox1.Text = "127.0.0.1";
+            this.maskedTextBox1.Size = new System.Drawing.Size(100, 20);
+            this.maskedTextBox1.TabIndex = 11;
             this.maskedTextBox1.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.maskedTextBox1_MaskInputRejected);
             // 
-            // button1
+            // ConnectButton
             // 
-            this.button1.Location = new System.Drawing.Point(227, 27);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 20);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Connect";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.ConnectButton.Location = new System.Drawing.Point(227, 27);
+            this.ConnectButton.Name = "ConnectButton";
+            this.ConnectButton.Size = new System.Drawing.Size(75, 20);
+            this.ConnectButton.TabIndex = 1;
+            this.ConnectButton.Text = "Connect";
+            this.ConnectButton.UseVisualStyleBackColor = true;
+            this.ConnectButton.Click += new System.EventHandler(this.ConnectButton_Click);
             // 
-            // listBox1
+            // logBox
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(13, 157);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(289, 290);
-            this.listBox1.TabIndex = 2;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.logBox.FormattingEnabled = true;
+            this.logBox.Location = new System.Drawing.Point(13, 170);
+            this.logBox.Name = "logBox";
+            this.logBox.Size = new System.Drawing.Size(289, 277);
+            this.logBox.TabIndex = 2;
+            this.logBox.SelectedIndexChanged += new System.EventHandler(this.logBox_SelectedIndexChanged);
             // 
             // menuStrip1
             // 
@@ -99,52 +98,52 @@
             // clearLogsToolStripMenuItem
             // 
             this.clearLogsToolStripMenuItem.Name = "clearLogsToolStripMenuItem";
-            this.clearLogsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.clearLogsToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.clearLogsToolStripMenuItem.Text = "Clear Logs";
             this.clearLogsToolStripMenuItem.Click += new System.EventHandler(this.clearLogsToolStripMenuItem_Click);
             // 
             // clearGraphToolStripMenuItem
             // 
             this.clearGraphToolStripMenuItem.Name = "clearGraphToolStripMenuItem";
-            this.clearGraphToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.clearGraphToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.clearGraphToolStripMenuItem.Text = "Clear Graph";
             this.clearGraphToolStripMenuItem.Click += new System.EventHandler(this.clearGraphToolStripMenuItem_Click);
             // 
             // exitAltF4ToolStripMenuItem
             // 
             this.exitAltF4ToolStripMenuItem.Name = "exitAltF4ToolStripMenuItem";
-            this.exitAltF4ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitAltF4ToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.exitAltF4ToolStripMenuItem.Text = "Exit (Alt+F4)";
             // 
-            // button2
+            // forwardButton
             // 
-            this.button2.Location = new System.Drawing.Point(13, 62);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(95, 23);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Forward (mm)";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.forwardButton.Location = new System.Drawing.Point(13, 62);
+            this.forwardButton.Name = "forwardButton";
+            this.forwardButton.Size = new System.Drawing.Size(95, 23);
+            this.forwardButton.TabIndex = 4;
+            this.forwardButton.Text = "Forward (mm)";
+            this.forwardButton.UseVisualStyleBackColor = true;
+            this.forwardButton.Click += new System.EventHandler(this.forwardButton_Click);
             // 
-            // button3
+            // rightButton
             // 
-            this.button3.Location = new System.Drawing.Point(13, 120);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(95, 23);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "Right (Degrees)";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.rightButton.Location = new System.Drawing.Point(13, 120);
+            this.rightButton.Name = "rightButton";
+            this.rightButton.Size = new System.Drawing.Size(95, 23);
+            this.rightButton.TabIndex = 5;
+            this.rightButton.Text = "Right (Degrees)";
+            this.rightButton.UseVisualStyleBackColor = true;
+            this.rightButton.Click += new System.EventHandler(this.rightButton_Click);
             // 
-            // button4
+            // leftButton
             // 
-            this.button4.Location = new System.Drawing.Point(13, 91);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(95, 23);
-            this.button4.TabIndex = 6;
-            this.button4.Text = "Left (Degrees)";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.leftButton.Location = new System.Drawing.Point(13, 91);
+            this.leftButton.Name = "leftButton";
+            this.leftButton.Size = new System.Drawing.Size(95, 23);
+            this.leftButton.TabIndex = 6;
+            this.leftButton.Text = "Left (Degrees)";
+            this.leftButton.UseVisualStyleBackColor = true;
+            this.leftButton.Click += new System.EventHandler(this.leftButton_Click);
             // 
             // forwardValue
             // 
@@ -175,7 +174,7 @@
             this.rightValue.TabIndex = 9;
             this.rightValue.Text = "90";
             this.rightValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.rightValue.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            this.rightValue.TextChanged += new System.EventHandler(this.rightValue_TextChanged);
             // 
             // obstacleGraph
             // 
@@ -194,18 +193,18 @@
             this.Controls.Add(this.rightValue);
             this.Controls.Add(this.leftValue);
             this.Controls.Add(this.forwardValue);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.leftButton);
+            this.Controls.Add(this.rightButton);
+            this.Controls.Add(this.forwardButton);
+            this.Controls.Add(this.logBox);
+            this.Controls.Add(this.ConnectButton);
             this.Controls.Add(this.maskedTextBox1);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "CyBotGUI";
             this.Text = "CyBot GUI";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.Window_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.obstacleGraph)).EndInit();
@@ -217,16 +216,16 @@
         #endregion
 
         private System.Windows.Forms.MaskedTextBox maskedTextBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Button ConnectButton;
+        private System.Windows.Forms.ListBox logBox;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clearLogsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clearGraphToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitAltF4ToolStripMenuItem;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button forwardButton;
+        private System.Windows.Forms.Button rightButton;
+        private System.Windows.Forms.Button leftButton;
         private System.Windows.Forms.TextBox forwardValue;
         private System.Windows.Forms.TextBox leftValue;
         private System.Windows.Forms.TextBox rightValue;
