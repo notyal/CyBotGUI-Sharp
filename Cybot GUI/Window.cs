@@ -198,7 +198,7 @@ namespace Cybot_GUI
 			// https://stackoverflow.com/q/28285130
 			// autoscroll to end
 			l.SelectedIndex = l.Items.Count - 1;
-			l.SelectedIndex = - 1;  // deselect the item
+			l.SelectedIndex = -1;  // deselect the item
 		}
 	}
 }
