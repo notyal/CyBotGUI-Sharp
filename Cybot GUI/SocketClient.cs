@@ -130,7 +130,9 @@ namespace Cybot_GUI
 		{
 			if (socket == null || !socket.Connected) return;
 
-			while (!ct.IsCancellationRequested) {
+			// check for data as long as we have no cancelation token and the socket is still alive
+			// http://stackoverflow.com/a/2661876
+			while (!ct.IsCancellationRequested && !(socket.Poll(1, SelectMode.SelectRead) && socket.Available == 0)) {
 				byte[] bytes = new byte[256];
 				int size;
 				try {
@@ -146,6 +148,8 @@ namespace Cybot_GUI
 					WriteException(ex);
 				}
 			}
+
+			output.Report("Connection ended.");
 		}
 
 		/// <summary>
@@ -156,7 +160,7 @@ namespace Cybot_GUI
 		{
 			lastException = ex;
 			Console.WriteLine();
-			Console.WriteLine("Caught Exception : " + ex.Message);
+			Console.WriteLine("SocketClient Caught Exception : " + ex.Message);
 			Console.WriteLine(ex);
 			Console.WriteLine();
 		}

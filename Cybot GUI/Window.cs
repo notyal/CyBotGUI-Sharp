@@ -73,7 +73,7 @@ namespace Cybot_GUI
 					// http://stackoverflow.com/a/18033198
 					var output = new Progress<string>(s => WriteToLog(s, false));
 					await Task.Factory.StartNew(() => client.ReceiveThread(output, ReceiveThreadCancel.Token), TaskCreationOptions.LongRunning);
-					WriteToLog("Ended receive thread.\n");
+					WriteToLog("Receive thread ended.\n");
 				}
 
 			} else {
