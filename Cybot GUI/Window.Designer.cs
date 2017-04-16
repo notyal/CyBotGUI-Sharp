@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CyBotGUI));
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.connectionIP = new System.Windows.Forms.MaskedTextBox();
             this.ConnectButton = new System.Windows.Forms.Button();
             this.logBox = new System.Windows.Forms.ListBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -48,13 +48,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.obstacleGraph)).BeginInit();
             this.SuspendLayout();
             // 
-            // maskedTextBox1
+            // connectionIP
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(0, 0);
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(100, 20);
-            this.maskedTextBox1.TabIndex = 11;
-            this.maskedTextBox1.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.maskedTextBox1_MaskInputRejected);
+            this.connectionIP.Location = new System.Drawing.Point(13, 27);
+            this.connectionIP.Name = "connectionIP";
+            this.connectionIP.Size = new System.Drawing.Size(208, 20);
+            this.connectionIP.TabIndex = 11;
+            this.connectionIP.Text = "192.168.1.1";
+            this.connectionIP.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.connectionIP_MaskInputRejected);
             // 
             // ConnectButton
             // 
@@ -178,9 +179,14 @@
             // 
             // obstacleGraph
             // 
+            this.obstacleGraph.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.obstacleGraph.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.obstacleGraph.ImageLocation = "https://img.clipartfest.com/38f7d8e0f8a6d4918dcd3ce6582f2547_pin-coordinate-plane" +
+    "-10-on-clipart-of-coordinate-plane_1005-1024.png";
             this.obstacleGraph.Location = new System.Drawing.Point(309, 27);
             this.obstacleGraph.Name = "obstacleGraph";
             this.obstacleGraph.Size = new System.Drawing.Size(608, 420);
+            this.obstacleGraph.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.obstacleGraph.TabIndex = 10;
             this.obstacleGraph.TabStop = false;
             // 
@@ -198,7 +204,7 @@
             this.Controls.Add(this.forwardButton);
             this.Controls.Add(this.logBox);
             this.Controls.Add(this.ConnectButton);
-            this.Controls.Add(this.maskedTextBox1);
+            this.Controls.Add(this.connectionIP);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
@@ -215,7 +221,7 @@
 
         #endregion
 
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.MaskedTextBox connectionIP;
         private System.Windows.Forms.Button ConnectButton;
         private System.Windows.Forms.ListBox logBox;
         private System.Windows.Forms.MenuStrip menuStrip1;

@@ -23,7 +23,7 @@ namespace Cybot_GUI
 		{
 			InitializeComponent();
 			ConnectButton.Text = connectText;
-			maskedTextBox1.Text = "127.0.0.1";
+			connectionIP.Text = "127.0.0.1"; // DEBUG TODO
 
 		}
 
@@ -61,7 +61,7 @@ namespace Cybot_GUI
 				ConnectButton.Text = disconnectText;
 
 				// setup socketclient
-				client = new SocketClient(maskedTextBox1.Text);
+				client = new SocketClient(connectionIP.Text);
 				WriteToLog(string.Format("Trying to connect to {0}:{1}...", client.Ip, client.Port));
 
 				// check if connected
@@ -169,10 +169,11 @@ namespace Cybot_GUI
 
 		}
 
-		private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+		private void connectionIP_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
 		{
 
 		}
+
 
 		/// <summary>
 		/// Appends item to logBox as well as the System Console.
