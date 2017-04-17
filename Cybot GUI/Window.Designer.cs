@@ -75,6 +75,7 @@
             this.logBox.Size = new System.Drawing.Size(289, 277);
             this.logBox.TabIndex = 2;
             this.logBox.SelectedIndexChanged += new System.EventHandler(this.logBox_SelectedIndexChanged);
+			this.logBox.DoubleClick += new System.EventHandler(this.logBox_DoubleClick);
             // 
             // menuStrip1
             // 
@@ -115,6 +116,7 @@
             this.exitAltF4ToolStripMenuItem.Name = "exitAltF4ToolStripMenuItem";
             this.exitAltF4ToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.exitAltF4ToolStripMenuItem.Text = "Exit (Alt+F4)";
+			this.exitAltF4ToolStripMenuItem.Click += new System.EventHandler(this.exitAltF4ToolStripMenuItem_Click);
             // 
             // forwardButton
             // 

@@ -27,16 +27,16 @@ namespace Cybot_GUI
 
 		}
 
+		/// <summary>
+		/// Called before application closes
+		/// </summary>
 		protected override void OnFormClosing(FormClosingEventArgs e)
 		{
 			base.OnFormClosing(e);
 			if (PreClosingConfirmation() == DialogResult.Yes) {
 				Dispose(true);
 
-				// close receiveThread if it is running
-				ReceiveThreadCancel.Cancel();
-
-				Application.Exit();
+				ExitApplication();
 			} else {
 				e.Cancel = true;
 			}
@@ -50,7 +50,19 @@ namespace Cybot_GUI
 				MessageBoxButtons.YesNo,
 				MessageBoxIcon.Question
 			);
+
 			return res;
+		}
+
+		/// <summary>
+		/// Exits the application.
+		/// </summary>
+		private void ExitApplication()
+		{
+			// close receiveThread if it is running
+			ReceiveThreadCancel.Cancel();
+
+			Application.Exit();
 		}
 
 		//Connect
@@ -99,6 +111,11 @@ namespace Cybot_GUI
 
 		}
 
+		private void logBox_DoubleClick(object sender, EventArgs e)
+		{
+
+		}
+
 		//
 		//Text boxes for the movement controls.
 		//
@@ -134,8 +151,8 @@ namespace Cybot_GUI
 		}
 		private void addObject(int x, int y)
 		{
-			System.Drawing.SolidBrush myBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Red);
-			System.Drawing.Graphics formGraphics;
+			SolidBrush myBrush = new SolidBrush(Color.Red);
+			Graphics formGraphics;
 			formGraphics = this.CreateGraphics();
 			formGraphics.FillRectangle(myBrush, new Rectangle(0, 0, 200, 300));
 			myBrush.Dispose();
@@ -162,6 +179,11 @@ namespace Cybot_GUI
 		private void clearLogsToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			logBox.Items.Clear();
+		}
+
+		private void exitAltF4ToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			ExitApplication();
 		}
 
 		private void Window_Load(object sender, EventArgs e)
