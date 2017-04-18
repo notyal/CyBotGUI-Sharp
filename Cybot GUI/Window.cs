@@ -13,18 +13,23 @@ namespace Cybot_GUI
 {
 	public partial class CyBotGUI : Form
 	{
+		// connection button strings
+		private readonly string connectText = "Connect";
+		private readonly string disconnectText = "Disconnect";
 
-		readonly string connectText = "Connect";
-		readonly string disconnectText = "Disconnect";
-		SocketClient client;
-		static CancellationTokenSource ReceiveThreadCancel = new CancellationTokenSource();
+		private SocketClient client;
+		private static CancellationTokenSource ReceiveThreadCancel = new CancellationTokenSource();
+		private RadarChart Radar;
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:Cybot_GUI.CyBotGUI"/> class.
+		/// </summary>
 		public CyBotGUI()
 		{
 			InitializeComponent();
 			ConnectButton.Text = connectText;
 			connectionIP.Text = "127.0.0.1"; // DEBUG TODO
-
+			Radar = new RadarChart(radarPlot);
 		}
 
 		/// <summary>
@@ -42,6 +47,9 @@ namespace Cybot_GUI
 			}
 		}
 
+		/// <summary>
+		/// Overrides the pre-closing confirmation handler.
+		/// </summary>
 		private DialogResult PreClosingConfirmation()
 		{
 			DialogResult res = MessageBox.Show(
@@ -63,6 +71,18 @@ namespace Cybot_GUI
 			ReceiveThreadCancel.Cancel();
 
 			Application.Exit();
+		}
+
+		/// <summary>
+		/// Autos the scroll.
+		/// </summary>
+		/// <param name="l">ListBox to autoscroll</param>
+		public static new void AutoScroll(ListBox l)
+		{
+			// https://stackoverflow.com/q/28285130
+			// autoscroll to end
+			l.SelectedIndex = l.Items.Count - 1;
+			l.SelectedIndex = -1;  // deselect the item
 		}
 
 		//Connect
@@ -208,20 +228,6 @@ namespace Cybot_GUI
 			if (writeConsole) Console.Write(msg);
 
 			AutoScroll(logBox);
-		}
-
-
-
-		/// <summary>
-		/// Autos the scroll.
-		/// </summary>
-		/// <param name="l">ListBox to autoscroll</param>
-		public static new void AutoScroll(ListBox l)
-		{
-			// https://stackoverflow.com/q/28285130
-			// autoscroll to end
-			l.SelectedIndex = l.Items.Count - 1;
-			l.SelectedIndex = -1;  // deselect the item
 		}
 
         private void obstacleGraph_Click(object sender, EventArgs e)

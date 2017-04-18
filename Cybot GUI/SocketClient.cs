@@ -6,6 +6,9 @@ using System.Threading;
 
 namespace Cybot_GUI
 {
+	/// <summary>
+	/// Handles serial data transmission over a socket.
+	/// </summary>
 	public class SocketClient
 	{
 
@@ -14,9 +17,13 @@ namespace Cybot_GUI
 		/// </summary>
 		public int Port;
 
-		static Exception lastException;
-		IPAddress ip;
-		Socket socket = null;
+		/// <summary>
+		/// The last exception that was thrown.
+		/// </summary>
+		public static Exception lastException;
+
+		private IPAddress ip;
+		private Socket socket = null;
 
 		/// <summary>
 		/// Get or set the Host IP address as a string.
