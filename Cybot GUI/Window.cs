@@ -223,5 +223,10 @@ namespace Cybot_GUI
 			l.SelectedIndex = l.Items.Count - 1;
 			l.SelectedIndex = -1;  // deselect the item
 		}
-	}
+
+        private void obstacleGraph_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
 }

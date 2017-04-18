@@ -43,9 +43,8 @@
             this.forwardValue = new System.Windows.Forms.TextBox();
             this.leftValue = new System.Windows.Forms.TextBox();
             this.rightValue = new System.Windows.Forms.TextBox();
-            this.obstacleGraph = new System.Windows.Forms.PictureBox();
+            this.radarPlot = new OxyPlot.WindowsForms.PlotView();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.obstacleGraph)).BeginInit();
             this.SuspendLayout();
             // 
             // connectionIP
@@ -75,7 +74,7 @@
             this.logBox.Size = new System.Drawing.Size(289, 277);
             this.logBox.TabIndex = 2;
             this.logBox.SelectedIndexChanged += new System.EventHandler(this.logBox_SelectedIndexChanged);
-			this.logBox.DoubleClick += new System.EventHandler(this.logBox_DoubleClick);
+            this.logBox.DoubleClick += new System.EventHandler(this.logBox_DoubleClick);
             // 
             // menuStrip1
             // 
@@ -116,7 +115,7 @@
             this.exitAltF4ToolStripMenuItem.Name = "exitAltF4ToolStripMenuItem";
             this.exitAltF4ToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.exitAltF4ToolStripMenuItem.Text = "Exit (Alt+F4)";
-			this.exitAltF4ToolStripMenuItem.Click += new System.EventHandler(this.exitAltF4ToolStripMenuItem_Click);
+            this.exitAltF4ToolStripMenuItem.Click += new System.EventHandler(this.exitAltF4ToolStripMenuItem_Click);
             // 
             // forwardButton
             // 
@@ -179,25 +178,24 @@
             this.rightValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.rightValue.TextChanged += new System.EventHandler(this.rightValue_TextChanged);
             // 
-            // obstacleGraph
+            // radarPlot
             // 
-            this.obstacleGraph.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.obstacleGraph.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.obstacleGraph.ImageLocation = "https://img.clipartfest.com/38f7d8e0f8a6d4918dcd3ce6582f2547_pin-coordinate-plane" +
-    "-10-on-clipart-of-coordinate-plane_1005-1024.png";
-            this.obstacleGraph.Location = new System.Drawing.Point(309, 27);
-            this.obstacleGraph.Name = "obstacleGraph";
-            this.obstacleGraph.Size = new System.Drawing.Size(608, 420);
-            this.obstacleGraph.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.obstacleGraph.TabIndex = 10;
-            this.obstacleGraph.TabStop = false;
+            this.radarPlot.Location = new System.Drawing.Point(325, 27);
+            this.radarPlot.Name = "radarPlot";
+            this.radarPlot.PanCursor = System.Windows.Forms.Cursors.Hand;
+            this.radarPlot.Size = new System.Drawing.Size(592, 420);
+            this.radarPlot.TabIndex = 12;
+            this.radarPlot.Text = "Radar";
+            this.radarPlot.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
+            this.radarPlot.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
+            this.radarPlot.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
             // 
             // CyBotGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(929, 459);
-            this.Controls.Add(this.obstacleGraph);
+            this.Controls.Add(this.radarPlot);
             this.Controls.Add(this.rightValue);
             this.Controls.Add(this.leftValue);
             this.Controls.Add(this.forwardValue);
@@ -215,7 +213,6 @@
             this.Load += new System.EventHandler(this.Window_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.obstacleGraph)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -237,7 +234,7 @@
         private System.Windows.Forms.TextBox forwardValue;
         private System.Windows.Forms.TextBox leftValue;
         private System.Windows.Forms.TextBox rightValue;
-        private System.Windows.Forms.PictureBox obstacleGraph;
+        private OxyPlot.WindowsForms.PlotView radarPlot;
     }
 }
 
