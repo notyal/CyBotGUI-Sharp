@@ -169,6 +169,8 @@ namespace Cybot_GUI
 			}
 
 		}
+
+        //Depreciated.
 		private void addObject(int x, int y)
 		{
 			SolidBrush myBrush = new SolidBrush(Color.Red);
@@ -182,7 +184,7 @@ namespace Cybot_GUI
 		//Left Button
 		private void leftButton_Click(object sender, EventArgs e)
 		{
-			addObject(0, 0);
+			
 		}
 
 		//Right Button
@@ -230,7 +232,7 @@ namespace Cybot_GUI
 			AutoScroll(logBox);
 		}
 
-        private void obstacleGraph_Click(object sender, EventArgs e)
+        private void radarPlot_Click(object sender, EventArgs e)
         {
 
         }

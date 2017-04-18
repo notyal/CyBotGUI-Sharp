@@ -49,18 +49,20 @@
             // 
             // connectionIP
             // 
-            this.connectionIP.Location = new System.Drawing.Point(13, 27);
+            this.connectionIP.Location = new System.Drawing.Point(20, 42);
+            this.connectionIP.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.connectionIP.Name = "connectionIP";
-            this.connectionIP.Size = new System.Drawing.Size(208, 20);
+            this.connectionIP.Size = new System.Drawing.Size(310, 26);
             this.connectionIP.TabIndex = 11;
             this.connectionIP.Text = "192.168.1.1";
             this.connectionIP.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.connectionIP_MaskInputRejected);
             // 
             // ConnectButton
             // 
-            this.ConnectButton.Location = new System.Drawing.Point(227, 27);
+            this.ConnectButton.Location = new System.Drawing.Point(340, 42);
+            this.ConnectButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ConnectButton.Name = "ConnectButton";
-            this.ConnectButton.Size = new System.Drawing.Size(75, 20);
+            this.ConnectButton.Size = new System.Drawing.Size(112, 31);
             this.ConnectButton.TabIndex = 1;
             this.ConnectButton.Text = "Connect";
             this.ConnectButton.UseVisualStyleBackColor = true;
@@ -69,20 +71,24 @@
             // logBox
             // 
             this.logBox.FormattingEnabled = true;
-            this.logBox.Location = new System.Drawing.Point(13, 170);
+            this.logBox.ItemHeight = 20;
+            this.logBox.Location = new System.Drawing.Point(20, 262);
+            this.logBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.logBox.Name = "logBox";
-            this.logBox.Size = new System.Drawing.Size(289, 277);
+            this.logBox.Size = new System.Drawing.Size(432, 424);
             this.logBox.TabIndex = 2;
             this.logBox.SelectedIndexChanged += new System.EventHandler(this.logBox_SelectedIndexChanged);
             this.logBox.DoubleClick += new System.EventHandler(this.logBox_DoubleClick);
             // 
             // menuStrip1
             // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(929, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(9, 3, 0, 3);
+            this.menuStrip1.Size = new System.Drawing.Size(1394, 35);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -93,35 +99,36 @@
             this.clearGraphToolStripMenuItem,
             this.exitAltF4ToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(50, 29);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // clearLogsToolStripMenuItem
             // 
             this.clearLogsToolStripMenuItem.Name = "clearLogsToolStripMenuItem";
-            this.clearLogsToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.clearLogsToolStripMenuItem.Size = new System.Drawing.Size(192, 30);
             this.clearLogsToolStripMenuItem.Text = "Clear Logs";
             this.clearLogsToolStripMenuItem.Click += new System.EventHandler(this.clearLogsToolStripMenuItem_Click);
             // 
             // clearGraphToolStripMenuItem
             // 
             this.clearGraphToolStripMenuItem.Name = "clearGraphToolStripMenuItem";
-            this.clearGraphToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.clearGraphToolStripMenuItem.Size = new System.Drawing.Size(192, 30);
             this.clearGraphToolStripMenuItem.Text = "Clear Graph";
             this.clearGraphToolStripMenuItem.Click += new System.EventHandler(this.clearGraphToolStripMenuItem_Click);
             // 
             // exitAltF4ToolStripMenuItem
             // 
             this.exitAltF4ToolStripMenuItem.Name = "exitAltF4ToolStripMenuItem";
-            this.exitAltF4ToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.exitAltF4ToolStripMenuItem.Size = new System.Drawing.Size(192, 30);
             this.exitAltF4ToolStripMenuItem.Text = "Exit (Alt+F4)";
             this.exitAltF4ToolStripMenuItem.Click += new System.EventHandler(this.exitAltF4ToolStripMenuItem_Click);
             // 
             // forwardButton
             // 
-            this.forwardButton.Location = new System.Drawing.Point(13, 62);
+            this.forwardButton.Location = new System.Drawing.Point(20, 95);
+            this.forwardButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.forwardButton.Name = "forwardButton";
-            this.forwardButton.Size = new System.Drawing.Size(95, 23);
+            this.forwardButton.Size = new System.Drawing.Size(142, 35);
             this.forwardButton.TabIndex = 4;
             this.forwardButton.Text = "Forward (mm)";
             this.forwardButton.UseVisualStyleBackColor = true;
@@ -129,9 +136,10 @@
             // 
             // rightButton
             // 
-            this.rightButton.Location = new System.Drawing.Point(13, 120);
+            this.rightButton.Location = new System.Drawing.Point(20, 185);
+            this.rightButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.rightButton.Name = "rightButton";
-            this.rightButton.Size = new System.Drawing.Size(95, 23);
+            this.rightButton.Size = new System.Drawing.Size(142, 35);
             this.rightButton.TabIndex = 5;
             this.rightButton.Text = "Right (Degrees)";
             this.rightButton.UseVisualStyleBackColor = true;
@@ -139,9 +147,10 @@
             // 
             // leftButton
             // 
-            this.leftButton.Location = new System.Drawing.Point(13, 91);
+            this.leftButton.Location = new System.Drawing.Point(20, 140);
+            this.leftButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.leftButton.Name = "leftButton";
-            this.leftButton.Size = new System.Drawing.Size(95, 23);
+            this.leftButton.Size = new System.Drawing.Size(142, 35);
             this.leftButton.TabIndex = 6;
             this.leftButton.Text = "Left (Degrees)";
             this.leftButton.UseVisualStyleBackColor = true;
@@ -149,10 +158,11 @@
             // 
             // forwardValue
             // 
-            this.forwardValue.Location = new System.Drawing.Point(114, 62);
+            this.forwardValue.Location = new System.Drawing.Point(171, 95);
+            this.forwardValue.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.forwardValue.MaxLength = 4;
             this.forwardValue.Name = "forwardValue";
-            this.forwardValue.Size = new System.Drawing.Size(44, 20);
+            this.forwardValue.Size = new System.Drawing.Size(64, 26);
             this.forwardValue.TabIndex = 7;
             this.forwardValue.Text = "100";
             this.forwardValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -160,9 +170,10 @@
             // 
             // leftValue
             // 
-            this.leftValue.Location = new System.Drawing.Point(114, 91);
+            this.leftValue.Location = new System.Drawing.Point(171, 140);
+            this.leftValue.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.leftValue.Name = "leftValue";
-            this.leftValue.Size = new System.Drawing.Size(44, 20);
+            this.leftValue.Size = new System.Drawing.Size(64, 26);
             this.leftValue.TabIndex = 8;
             this.leftValue.Text = "90";
             this.leftValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -170,9 +181,10 @@
             // 
             // rightValue
             // 
-            this.rightValue.Location = new System.Drawing.Point(114, 123);
+            this.rightValue.Location = new System.Drawing.Point(171, 189);
+            this.rightValue.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.rightValue.Name = "rightValue";
-            this.rightValue.Size = new System.Drawing.Size(44, 20);
+            this.rightValue.Size = new System.Drawing.Size(64, 26);
             this.rightValue.TabIndex = 9;
             this.rightValue.Text = "90";
             this.rightValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -180,21 +192,23 @@
             // 
             // radarPlot
             // 
-            this.radarPlot.Location = new System.Drawing.Point(325, 27);
+            this.radarPlot.Location = new System.Drawing.Point(488, 42);
+            this.radarPlot.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.radarPlot.Name = "radarPlot";
             this.radarPlot.PanCursor = System.Windows.Forms.Cursors.Hand;
-            this.radarPlot.Size = new System.Drawing.Size(592, 420);
+            this.radarPlot.Size = new System.Drawing.Size(888, 646);
             this.radarPlot.TabIndex = 12;
             this.radarPlot.Text = "Radar";
             this.radarPlot.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
             this.radarPlot.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
             this.radarPlot.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
+            this.radarPlot.Click += new System.EventHandler(this.radarPlot_Click);
             // 
             // CyBotGUI
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(929, 459);
+            this.ClientSize = new System.Drawing.Size(1394, 706);
             this.Controls.Add(this.radarPlot);
             this.Controls.Add(this.rightValue);
             this.Controls.Add(this.leftValue);
@@ -208,6 +222,7 @@
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "CyBotGUI";
             this.Text = "CyBot GUI";
             this.Load += new System.EventHandler(this.Window_Load);
