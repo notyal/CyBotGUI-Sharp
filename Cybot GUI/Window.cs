@@ -164,6 +164,7 @@ namespace Cybot_GUI
 					logBox.Items.Add("Moving forward " + fV + "mm");
 				}
                 //Insert Socket push here for forward movement.
+                client.Write("M" + fV);
 			} catch (Exception a) {
 				logBox.Items.Add("INVALID FORMAT" + a.Message);
 			}
