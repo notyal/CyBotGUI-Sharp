@@ -50,6 +50,7 @@ namespace Cybot_GUI
 		/// <summary>
 		/// Overrides the pre-closing confirmation handler.
 		/// </summary>
+        /// 
 		private DialogResult PreClosingConfirmation()
 		{
 			DialogResult res = MessageBox.Show(
@@ -162,10 +163,9 @@ namespace Cybot_GUI
 				if (fV > 0) {
 					logBox.Items.Add("Moving forward " + fV + "mm");
 				}
+                //Insert Socket push here for forward movement.
 			} catch (Exception a) {
-				logBox.Items.Add("INVALID FORMAT");
-				logBox.Items.Add(a.Message);
-				throw;
+				logBox.Items.Add("INVALID FORMAT" + a.Message);
 			}
 
 		}
@@ -184,16 +184,42 @@ namespace Cybot_GUI
 		//Left Button
 		private void leftButton_Click(object sender, EventArgs e)
 		{
-			
-		}
+            try
+            {
+                int lV = Convert.ToInt16(forwardValue.Text);
+                if (lV > 0)
+                {
+                    logBox.Items.Add("Turning left " + lV + "degrees");
+                }
+                //Insert Socket push here for left movement.
+            }
+            catch (Exception a)
+            {
+                logBox.Items.Add("INVALID FORMAT" + a.Message);
+            }
 
-		//Right Button
-		private void rightButton_Click(object sender, EventArgs e)
+        }
+
+        //Right Button
+        private void rightButton_Click(object sender, EventArgs e)
 		{
+            try
+            {
+                int rV = Convert.ToInt16(forwardValue.Text);
+                if (rV > 0)
+                {
+                    logBox.Items.Add("Turning right " + rV + "degrees");
+                }
+                //Insert Socket push here for right movement.
+            }
+            catch (Exception a)
+            {
+                logBox.Items.Add("INVALID FORMAT" + a.Message);
+            }
 
-		}
+        }
 
-		private void clearGraphToolStripMenuItem_Click(object sender, EventArgs e)
+        private void clearGraphToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 
 		}
@@ -235,6 +261,11 @@ namespace Cybot_GUI
         private void radarPlot_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void saveGraphPNGToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

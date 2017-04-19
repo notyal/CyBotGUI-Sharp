@@ -90,5 +90,13 @@ namespace Cybot_GUI
 		{
 			//TODO
 		}
+        /// <summary>
+        /// Saves graph and openes file dialog to choose save location.
+        /// </summary>
+        public void CreateImage(string fileName, PlotModel plotModel)
+        {
+            var pngExporter = new PngExporter { Width = 600, Height = 400, Background = OxyColors.White };
+            pngExporter.ExportToFile(plotModel, fileName);
+        }
 	}
 }

@@ -35,7 +35,6 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearLogsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.clearGraphToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitAltF4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.forwardButton = new System.Windows.Forms.Button();
             this.rightButton = new System.Windows.Forms.Button();
@@ -44,6 +43,9 @@
             this.leftValue = new System.Windows.Forms.TextBox();
             this.rightValue = new System.Windows.Forms.TextBox();
             this.radarPlot = new OxyPlot.WindowsForms.PlotView();
+            this.graphToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveGraphPNGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearGraphToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,7 +86,8 @@
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.graphToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(9, 3, 0, 3);
@@ -96,7 +99,6 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.clearLogsToolStripMenuItem,
-            this.clearGraphToolStripMenuItem,
             this.exitAltF4ToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(50, 29);
@@ -105,21 +107,14 @@
             // clearLogsToolStripMenuItem
             // 
             this.clearLogsToolStripMenuItem.Name = "clearLogsToolStripMenuItem";
-            this.clearLogsToolStripMenuItem.Size = new System.Drawing.Size(192, 30);
+            this.clearLogsToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
             this.clearLogsToolStripMenuItem.Text = "Clear Logs";
             this.clearLogsToolStripMenuItem.Click += new System.EventHandler(this.clearLogsToolStripMenuItem_Click);
-            // 
-            // clearGraphToolStripMenuItem
-            // 
-            this.clearGraphToolStripMenuItem.Name = "clearGraphToolStripMenuItem";
-            this.clearGraphToolStripMenuItem.Size = new System.Drawing.Size(192, 30);
-            this.clearGraphToolStripMenuItem.Text = "Clear Graph";
-            this.clearGraphToolStripMenuItem.Click += new System.EventHandler(this.clearGraphToolStripMenuItem_Click);
             // 
             // exitAltF4ToolStripMenuItem
             // 
             this.exitAltF4ToolStripMenuItem.Name = "exitAltF4ToolStripMenuItem";
-            this.exitAltF4ToolStripMenuItem.Size = new System.Drawing.Size(192, 30);
+            this.exitAltF4ToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
             this.exitAltF4ToolStripMenuItem.Text = "Exit (Alt+F4)";
             this.exitAltF4ToolStripMenuItem.Click += new System.EventHandler(this.exitAltF4ToolStripMenuItem_Click);
             // 
@@ -204,6 +199,28 @@
             this.radarPlot.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
             this.radarPlot.Click += new System.EventHandler(this.radarPlot_Click);
             // 
+            // graphToolStripMenuItem
+            // 
+            this.graphToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saveGraphPNGToolStripMenuItem,
+            this.clearGraphToolStripMenuItem1});
+            this.graphToolStripMenuItem.Name = "graphToolStripMenuItem";
+            this.graphToolStripMenuItem.Size = new System.Drawing.Size(72, 29);
+            this.graphToolStripMenuItem.Text = "Graph";
+            // 
+            // saveGraphPNGToolStripMenuItem
+            // 
+            this.saveGraphPNGToolStripMenuItem.Name = "saveGraphPNGToolStripMenuItem";
+            this.saveGraphPNGToolStripMenuItem.Size = new System.Drawing.Size(237, 30);
+            this.saveGraphPNGToolStripMenuItem.Text = "Save Graph (PNG)";
+            this.saveGraphPNGToolStripMenuItem.Click += new System.EventHandler(this.saveGraphPNGToolStripMenuItem_Click);
+            // 
+            // clearGraphToolStripMenuItem1
+            // 
+            this.clearGraphToolStripMenuItem1.Name = "clearGraphToolStripMenuItem1";
+            this.clearGraphToolStripMenuItem1.Size = new System.Drawing.Size(237, 30);
+            this.clearGraphToolStripMenuItem1.Text = "Clear Graph";
+            // 
             // CyBotGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -241,7 +258,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clearLogsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem clearGraphToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitAltF4ToolStripMenuItem;
         private System.Windows.Forms.Button forwardButton;
         private System.Windows.Forms.Button rightButton;
@@ -250,6 +266,9 @@
         private System.Windows.Forms.TextBox leftValue;
         private System.Windows.Forms.TextBox rightValue;
         private OxyPlot.WindowsForms.PlotView radarPlot;
+        private System.Windows.Forms.ToolStripMenuItem graphToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveGraphPNGToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clearGraphToolStripMenuItem1;
     }
 }
 
