@@ -139,12 +139,12 @@ namespace Cybot_GUI
 			try {
 				int fV = Convert.ToInt16(forwardValue.Text);
 				if (fV > 0) {
-					logBox.Items.Add("Moving forward " + fV + "mm");
+					WriteToLog("Moving forward " + fV + "mm");
 				}
                 //Insert Socket push here for forward movement.
                 client.Write("M" + fV);
 			} catch (Exception a) {
-				logBox.Items.Add("INVALID FORMAT" + a.Message);
+				WriteToLog("INVALID FORMAT" + a.Message);
 			}
 
 		}
@@ -168,13 +168,13 @@ namespace Cybot_GUI
                 int lV = Convert.ToInt16(leftValue.Text);
                 if (lV > 0)
                 {
-                    logBox.Items.Add("Turning left " + lV + " degrees");
+                    WriteToLog("Turning left " + lV + " degrees");
                 }
                 //Insert Socket push here for left movement.
             }
             catch (Exception a)
             {
-                logBox.Items.Add("INVALID FORMAT " + a.Message);
+                WriteToLog("INVALID FORMAT " + a.Message);
             }
 
         }
@@ -187,13 +187,13 @@ namespace Cybot_GUI
                 int rV = Convert.ToInt16(rightValue.Text);
                 if (rV > 0)
                 {
-                    logBox.Items.Add("Turning right " + rV + " degrees");
+                    WriteToLog("Turning right " + rV + " degrees");
                 }
                 //Insert Socket push here for right movement.
             }
             catch (Exception a)
             {
-                logBox.Items.Add("INVALID FORMAT " + a.Message);
+                WriteToLog("INVALID FORMAT " + a.Message);
             }
 
         }
