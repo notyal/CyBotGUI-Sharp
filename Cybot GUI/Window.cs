@@ -136,66 +136,77 @@ namespace Cybot_GUI
 		//Forward Button
 		private void forwardButton_Click(object sender, EventArgs e)
 		{
-			try {
-				int fV = Convert.ToInt16(forwardValue.Text);
-				if (fV > 0) {
-					WriteToLog("Moving forward " + fV + "mm");
-				}
-                //Insert Socket push here for forward movement.
-                client.Write("M" + fV);
-			} catch (Exception a) {
-				WriteToLog("INVALID FORMAT" + a.Message);
-			}
-
-		}
-
-        //Depreciated.
-		private void addObject(int x, int y)
-		{
-			SolidBrush myBrush = new SolidBrush(Color.Red);
-			Graphics formGraphics;
-			formGraphics = this.CreateGraphics();
-			formGraphics.FillRectangle(myBrush, new Rectangle(0, 0, 200, 300));
-			myBrush.Dispose();
-			formGraphics.Dispose();
+            if (client.IsConnected())
+            {
+                try
+                {
+                    int fV = Convert.ToInt16(forwardValue.Text);
+                    if (fV > 0)
+                    {
+                        WriteToLog("Moving forward " + fV + "mm");
+                    }
+                    //Insert Socket push here for forward movement.
+                    client.Write("M" + fV);
+                }
+                catch (Exception a)
+                {
+                    WriteToLog("INVALID FORMAT" + a.Message);
+                }
+            }
+            else
+            {
+                WriteToLog("Cannot move, not Connected.");
+            }
 		}
 
 		//Left Button
 		private void leftButton_Click(object sender, EventArgs e)
 		{
-            try
+            if (client.IsConnected())
             {
-                int lV = Convert.ToInt16(leftValue.Text);
-                if (lV > 0)
+                try
                 {
-                    WriteToLog("Turning left " + lV + " degrees");
+                    int lV = Convert.ToInt16(leftValue.Text);
+                    if (lV > 0)
+                    {
+                        WriteToLog("Turning left " + lV + " degrees");
+                    }
+                    //Insert Socket push here for left movement.
                 }
-                //Insert Socket push here for left movement.
+                catch (Exception a)
+                {
+                    WriteToLog("INVALID FORMAT " + a.Message);
+                }
             }
-            catch (Exception a)
+            else
             {
-                WriteToLog("INVALID FORMAT " + a.Message);
+                WriteToLog("Cannot move, not Connected.");
             }
-
         }
 
         //Right Button
         private void rightButton_Click(object sender, EventArgs e)
 		{
-            try
+            if (client.IsConnected())
             {
-                int rV = Convert.ToInt16(rightValue.Text);
-                if (rV > 0)
+                try
                 {
-                    WriteToLog("Turning right " + rV + " degrees");
+                    int rV = Convert.ToInt16(rightValue.Text);
+                    if (rV > 0)
+                    {
+                        WriteToLog("Turning right " + rV + " degrees");
+                    }
+                    //Insert Socket push here for right movement.
                 }
-                //Insert Socket push here for right movement.
+                catch (Exception a)
+                {
+                    WriteToLog("INVALID FORMAT " + a.Message);
+                }
             }
-            catch (Exception a)
+            else
             {
-                WriteToLog("INVALID FORMAT " + a.Message);
+                WriteToLog("Cannot move, not Connected.");
             }
-
         }
 
         private void clearGraphToolStripMenuItem_Click(object sender, EventArgs e)
