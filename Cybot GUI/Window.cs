@@ -38,29 +38,8 @@ namespace Cybot_GUI
 		protected override void OnFormClosing(FormClosingEventArgs e)
 		{
 			base.OnFormClosing(e);
-			if (PreClosingConfirmation() == DialogResult.Yes) {
-				Dispose(true);
-
-				ExitApplication();
-			} else {
-				e.Cancel = true;
-			}
-		}
-
-		/// <summary>
-		/// Overrides the pre-closing confirmation handler.
-		/// </summary>
-        /// 
-		private DialogResult PreClosingConfirmation()
-		{
-			DialogResult res = MessageBox.Show(
-				"Do you want to quit?", // question
-				"Quit...", // title
-				MessageBoxButtons.YesNo,
-				MessageBoxIcon.Question
-			);
-
-			return res;
+			Dispose(true);
+			ExitApplication();
 		}
 
 		/// <summary>
