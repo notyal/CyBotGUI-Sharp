@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -28,7 +28,6 @@ namespace Cybot_GUI
 		{
 			InitializeComponent();
 			ConnectButton.Text = connectText;
-			connectionIP.Text = "127.0.0.1"; // DEBUG TODO
 			Radar = new RadarChart(radarPlot);
 		}
 
