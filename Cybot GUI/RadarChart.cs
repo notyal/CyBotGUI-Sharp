@@ -22,7 +22,7 @@ namespace Cybot_GUI
 		{
 			this.Plot = Plot;
 
-#region debug
+			#region debug
 			// https://github.com/oxyplot/oxyplot/blob/release/v1.0.0/Source/Examples/ExampleLibrary/Axes/PolarPlotExamples.cs#L129
 			Model = new PlotModel {
 				Title = "Semi-circle polar plot",
@@ -48,7 +48,7 @@ namespace Cybot_GUI
 				MinorGridlineStyle = LineStyle.Solid
 			});
 			Model.Series.Add(new FunctionSeries(x => Math.Sin(x / 180 * Math.PI), t => t, 0, 180, 0.01));
-#endregion //debug
+			#endregion //debug
 
 			// update model
 			Refresh();
@@ -90,13 +90,13 @@ namespace Cybot_GUI
 		{
 			//TODO
 		}
-        /// <summary>
-        /// Saves graph and openes file dialog to choose save location.
-        /// </summary>
-        public void CreateImage(string fileName, PlotModel plotModel)
-        {
-            var pngExporter = new PngExporter { Width = 600, Height = 400, Background = OxyColors.White };
-            pngExporter.ExportToFile(plotModel, fileName);
-        }
+		/// <summary>
+		/// Saves graph and openes file dialog to choose save location.
+		/// </summary>
+		public void CreateImage(string fileName, PlotModel plotModel)
+		{
+			var pngExporter = new PngExporter { Width = 600, Height = 400, Background = OxyColors.White };
+			pngExporter.ExportToFile(plotModel, fileName);
+		}
 	}
 }

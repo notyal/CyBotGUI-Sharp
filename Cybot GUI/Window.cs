@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -154,79 +154,60 @@ namespace Cybot_GUI
 		//Forward Button
 		private void forwardButton_Click(object sender, EventArgs e)
 		{
-            if (client.IsConnected())
-            {
-                try
-                {
-                    int fV = Convert.ToInt16(forwardValue.Text);
-                    if (fV > 0)  WriteToLog("Moving forward " + fV + "mm");
+			if (client.IsConnected()) {
+				try {
+					int fV = Convert.ToInt16(forwardValue.Text);
+					if (fV > 0) WriteToLog("Moving forward " + fV + "mm");
 
 					String r = client.SendCommand("M" + fV);
 					WriteToLog("Command Response: " + r);
-                }
-                catch (Exception a)
-                {
-                    WriteToLog("INVALID FORMAT" + a.Message);
-                }
-            }
-            else
-            {
-                WriteToLog("Cannot move, not Connected.");
-            }
+				} catch (Exception a) {
+					WriteToLog("INVALID FORMAT" + a.Message);
+				}
+			} else {
+				WriteToLog("Cannot move, not Connected.");
+			}
 		}
 
 		//Left Button
 		private void leftButton_Click(object sender, EventArgs e)
 		{
-            if (client.IsConnected())
-            {
-                try
-                {
-                    int lV = Convert.ToInt16(leftValue.Text);
-                    if (lV > 0)
-                    {
-                        WriteToLog("Turning left " + lV + " degrees");
-                    }
+			if (client.IsConnected()) {
+				try {
+					int lV = Convert.ToInt16(leftValue.Text);
+					if (lV > 0) {
+						WriteToLog("Turning left " + lV + " degrees");
+					}
 					//Insert Socket push here for left movement.
 					String r = client.SendCommand("L" + lV);
 					WriteToLog("Command Response: " + r);
-                }
-                catch (Exception a)
-                {
-                    WriteToLog("INVALID FORMAT " + a.Message);
-                }
-            }
-            else
-            {
-                WriteToLog("Cannot move, not Connected.");
-            }
-        }
+				} catch (Exception a) {
+					WriteToLog("INVALID FORMAT " + a.Message);
+				}
+			} else {
+				WriteToLog("Cannot move, not Connected.");
+			}
+		}
 
-        //Right Button
-        private void rightButton_Click(object sender, EventArgs e)
+		//Right Button
+		private void rightButton_Click(object sender, EventArgs e)
 		{
-            if (client.IsConnected())
-            {
-                try
-                {
-                    int rV = Convert.ToInt16(rightValue.Text);
-                    if (rV > 0) WriteToLog("Turning right " + rV + " degrees");
+			if (client.IsConnected()) {
+				try {
+					int rV = Convert.ToInt16(rightValue.Text);
+					if (rV > 0) WriteToLog("Turning right " + rV + " degrees");
 					//Insert Socket push here for right movement.
 					String r = client.SendCommand("R" + rV);
 					WriteToLog("Command Response: " + r);
-                }
-                catch (Exception a)
-                {
-                    WriteToLog("INVALID FORMAT " + a.Message);
-                }
-            }
-            else
-            {
-                WriteToLog("Cannot move, not Connected.");
-            }
-        }
+				} catch (Exception a) {
+					WriteToLog("INVALID FORMAT " + a.Message);
+				}
+			} else {
+				WriteToLog("Cannot move, not Connected.");
+			}
+		}
 
-        private void clearGraphToolStripMenuItem_Click(object sender, EventArgs e)
+		private void clearGraphToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 
 		}
@@ -248,15 +229,15 @@ namespace Cybot_GUI
 
 		private void connectionIP_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
 		{
-			
+
 		}
 
 		private void connectionIP_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Enter) {
-					e.SuppressKeyPress = true;
-					//ConnectButton_Click(sender, e);
-				}
+				e.SuppressKeyPress = true;
+				//ConnectButton_Click(sender, e);
+			}
 		}
 
 
@@ -273,14 +254,14 @@ namespace Cybot_GUI
 			AutoScroll(logBox);
 		}
 
-        private void radarPlot_Click(object sender, EventArgs e)
-        {
+		private void radarPlot_Click(object sender, EventArgs e)
+		{
 
-        }
+		}
 
-        private void saveGraphPNGToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-        }
-    }
+		private void saveGraphPNGToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+
+		}
+	}
 }
