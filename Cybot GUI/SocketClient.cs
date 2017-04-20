@@ -76,6 +76,10 @@ namespace Cybot_GUI
 		public bool Connect()
 		{
 			try {
+				// make sure things are reset
+				AwaitingCommand = false;
+				AwaitedCommand = "";
+
 				socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 				socket.Connect(ip, Port);
 			} catch (SocketException ex) {
@@ -168,8 +172,10 @@ namespace Cybot_GUI
 		/// <summary>
 		/// Thread that processes received data
 		/// </summary>
-		/// <param name="output">Output.</param>
-		public void ReceiveThread(IProgress<string> output, CancellationToken ct)
+		/// <param name="log">Log output.</param>
+		/// <param name="scandata">Raw scandata.</param>
+		/// <param name="ct">Token to cancel the thread.</param>
+		public void ReceiveThread(IProgress<string> log, IProgress<string> scandata, CancellationToken ct)
 		{
 			if (socket == null || !socket.Connected) return;
 
@@ -185,19 +191,32 @@ namespace Cybot_GUI
 					// only report data if buffer is >0
 					if (size > 0) {
 						String inputSerial = Encoding.UTF8.GetString(bytes);
-						output.Report(inputSerial);
 
+						// handle scandata
+						// having this before AwaitingCommand will allow us to process the data as it comes in
+						//   even if it comes before the awaited command
+						if (inputSerial.ToCharArray(0, 1)[0] == 'S') {
+							scandata.Report(inputSerial);
+							continue;
+						}
+
+						// handle if we are awaiting a command
+						// *not* recommended for scan data
 						if (AwaitingCommand) {
 							AwaitedCommand = inputSerial;
 							AwaitingCommand = false;
+							continue;
 						}
+
+						// log unprocessed data
+						log.Report("[unprocessed]: " + inputSerial);
 					}
 				} catch (Exception ex) {
 					WriteException(ex);
 				}
 			}
 
-			output.Report("Connection ended.");
+			log.Report("Connection ended.");
 		}
 
 		/// <summary>

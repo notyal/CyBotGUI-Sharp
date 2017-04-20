@@ -89,7 +89,6 @@
     <Compile Include="SocketClient.cs" />
     <Compile Include="RadarChart.cs" />
     <None Include="packages.config" />
-    <Compile Include="Commands.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

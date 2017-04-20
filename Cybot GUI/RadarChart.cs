@@ -13,15 +13,23 @@ namespace Cybot_GUI
 	{
 		PlotView Plot;
 		PlotModel Model;
+		IProgress<string> log;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="T:Cybot_GUI.RadarChart"/> class.
 		/// </summary>
 		/// <param name="Plot">PlotView.</param>
-		public RadarChart(PlotView Plot)
+		/// <param name="log">Log output.</param>
+		public RadarChart(PlotView Plot, IProgress<string> log)
 		{
 			this.Plot = Plot;
+			this.log = log;
 
+			PlotInit();
+		}
+
+		private void PlotInit()
+		{
 			#region debug
 			// https://github.com/oxyplot/oxyplot/blob/release/v1.0.0/Source/Examples/ExampleLibrary/Axes/PolarPlotExamples.cs#L129
 			Model = new PlotModel {
@@ -72,6 +80,7 @@ namespace Cybot_GUI
 			// http://docs.oxyplot.org/en/latest/guidelines/performance.html
 			// https://github.com/oxyplot/oxyplot/blob/release/v1.0.0/Source/Examples/ExampleLibrary/Examples/ItemsSourceExamples.cs
 			//TODO
+			ProcessData(s);
 		}
 
 		/// <summary>
@@ -88,6 +97,9 @@ namespace Cybot_GUI
 		/// <param name="s">Data</param>
 		private void ProcessData(string s)
 		{
+			log.Report("Radar GOT DATA: " + s);
+			String[] data = s.Split(' ');
+			if (data.Length != 5); //error
 			//TODO
 		}
 		/// <summary>

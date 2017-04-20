@@ -28,8 +28,14 @@ namespace Cybot_GUI
 		{
 			InitializeComponent();
 			ConnectButton.Text = connectText;
-			Radar = new RadarChart(radarPlot);
+
+			var log = new Progress<string>(s => WriteToLog(s, false));
+			Radar = new RadarChart(radarPlot, log);
+
 			SetMovementControlsEnabled(false);
+
+			//DEBUG TODO
+			connectionIP.Text = "127.0.0.1";
 		}
 
 		/// <summary>
@@ -53,6 +59,11 @@ namespace Cybot_GUI
 			Application.Exit();
 		}
 
+		private void Window_Load(object sender, EventArgs e)
+		{
+
+		}
+
 		/// <summary>
 		/// Autos the scroll.
 		/// </summary>
@@ -63,6 +74,19 @@ namespace Cybot_GUI
 			// autoscroll to end
 			l.SelectedIndex = l.Items.Count - 1;
 			l.SelectedIndex = -1;  // deselect the item
+		}
+
+		/// <summary>
+		/// Appends item to logBox as well as the System Console.
+		/// </summary>
+		/// <param name="msg">Message to write</param>
+		/// <param name="writeConsole">If set to <c>false</c>, disable writing to the console.</param>
+		private void WriteToLog(string msg, bool writeConsole = true)
+		{
+			logBox.Items.Add(msg);
+			if (writeConsole) Console.Write(msg);
+
+			AutoScroll(logBox);
 		}
 
 		/// <summary>
@@ -92,15 +116,23 @@ namespace Cybot_GUI
 
 				// check if connected
 				if (!client.Connect()) {
-					WriteToLog(client.LastErrorMessage + "...\n");
+					WriteToLog(client.LastErrorMessage + ".\n");
 					ConnectButton.Text = connectText;
 				} else {
 					// actions to perform after successful connection
 					// http://stackoverflow.com/a/18033198
 					SetMovementControlsEnabled(true);
-					var output = new Progress<string>(s => WriteToLog(s, false));
-					await Task.Factory.StartNew(() => client.ReceiveThread(output, ReceiveThreadCancel.Token), TaskCreationOptions.LongRunning);
+					WriteToLog("Success.\n");
+
+					var log = new Progress<string>(s => WriteToLog(s, false));
+					var scandata = new Progress<string>(Radar.AddData);
+					await Task.Factory.StartNew(() => client.ReceiveThread(log, scandata, ReceiveThreadCancel.Token), TaskCreationOptions.LongRunning);
+					// the above line will block further lines until its thread ends
+
 					WriteToLog("Receive thread ended.\n");
+					ReceiveThreadCancel = new CancellationTokenSource();
+					ConnectButton.Text = connectText;
+					SetMovementControlsEnabled(false);
 				}
 
 			} else {
@@ -123,38 +155,11 @@ namespace Cybot_GUI
 			}
 		}
 
-		private void logBox_SelectedIndexChanged(object sender, EventArgs e)
-		{
-
-		}
-
-		private void logBox_DoubleClick(object sender, EventArgs e)
-		{
-
-		}
-
-		//
-		//Text boxes for the movement controls.
-		//
-		private void rightValue_TextChanged(object sender, EventArgs e)
-		{
-
-		}
-
-		private void leftValue_TextChanged(object sender, EventArgs e)
-		{
-
-		}
-
-		private void forwardValue_TextChanged(object sender, EventArgs e)
-		{
-
-		}
+		// ----- MOVEMENT BUTTONS --------------------------------------------------------------------------------------
 
 		//Forward Button
 		private void forwardButton_Click(object sender, EventArgs e)
 		{
-			if (client.IsConnected()) {
 				try {
 					int fV = Convert.ToInt16(forwardValue.Text);
 					if (fV > 0) WriteToLog("Moving forward " + fV + "mm");
@@ -164,49 +169,41 @@ namespace Cybot_GUI
 				} catch (Exception a) {
 					WriteToLog("INVALID FORMAT" + a.Message);
 				}
-			} else {
-				WriteToLog("Cannot move, not Connected.");
-			}
+
 		}
 
 		//Left Button
 		private void leftButton_Click(object sender, EventArgs e)
 		{
-			if (client.IsConnected()) {
 				try {
 					int lV = Convert.ToInt16(leftValue.Text);
-					if (lV > 0) {
-						WriteToLog("Turning left " + lV + " degrees");
-					}
-					//Insert Socket push here for left movement.
+					if (lV > 0) WriteToLog("Turning left " + lV + " degrees");
+
 					String r = client.SendCommand("L" + lV);
 					WriteToLog("Command Response: " + r);
 				} catch (Exception a) {
 					WriteToLog("INVALID FORMAT " + a.Message);
 				}
-			} else {
-				WriteToLog("Cannot move, not Connected.");
-			}
+
 		}
 
 		//Right Button
 		private void rightButton_Click(object sender, EventArgs e)
 		{
-			if (client.IsConnected()) {
 				try {
 					int rV = Convert.ToInt16(rightValue.Text);
 					if (rV > 0) WriteToLog("Turning right " + rV + " degrees");
-					//Insert Socket push here for right movement.
+
 					String r = client.SendCommand("R" + rV);
 					WriteToLog("Command Response: " + r);
 				} catch (Exception a) {
 					WriteToLog("INVALID FORMAT " + a.Message);
 				}
-			} else {
-				WriteToLog("Cannot move, not Connected.");
-			}
 		}
+		// ----- END MOVEMENT BUTTONS ----------------------------------------------------------------------------------
 
+
+		// ----- TOOL STRIP --------------------------------------------------------------------------------------------
 		private void clearGraphToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 
@@ -222,11 +219,28 @@ namespace Cybot_GUI
 			ExitApplication();
 		}
 
-		private void Window_Load(object sender, EventArgs e)
+		private void saveGraphPNGToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+
+		}
+		// ----- END TOOL STRIP ----------------------------------------------------------------------------------------
+
+
+		// ----- LOGBOX ------------------------------------------------------------------------------------------------
+		private void logBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
 
 		}
 
+		private void logBox_DoubleClick(object sender, EventArgs e)
+		{
+
+		}
+
+		// ----- END LOGBOX --------------------------------------------------------------------------------------------
+
+
+		// ----- CONNECTION IP -----------------------------------------------------------------------------------------
 		private void connectionIP_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
 		{
 
@@ -239,27 +253,10 @@ namespace Cybot_GUI
 				//ConnectButton_Click(sender, e);
 			}
 		}
+		// ----- END CONNECTION IP -------------------------------------------------------------------------------------
 
-
-		/// <summary>
-		/// Appends item to logBox as well as the System Console.
-		/// </summary>
-		/// <param name="msg">Message to write</param>
-		/// <param name="writeConsole">If set to <c>false</c>, disable writing to the console.</param>
-		private void WriteToLog(string msg, bool writeConsole = true)
-		{
-			logBox.Items.Add(msg);
-			if (writeConsole) Console.Write(msg);
-
-			AutoScroll(logBox);
-		}
 
 		private void radarPlot_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void saveGraphPNGToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 
 		}

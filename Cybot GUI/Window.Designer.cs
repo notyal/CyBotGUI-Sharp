@@ -161,7 +161,6 @@
 			this.forwardValue.TabIndex = 7;
 			this.forwardValue.Text = "100";
 			this.forwardValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			this.forwardValue.TextChanged += new System.EventHandler(this.forwardValue_TextChanged);
 			// 
 			// leftValue
 			// 
@@ -172,7 +171,6 @@
 			this.leftValue.TabIndex = 8;
 			this.leftValue.Text = "90";
 			this.leftValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			this.leftValue.TextChanged += new System.EventHandler(this.leftValue_TextChanged);
 			// 
 			// rightValue
 			// 
@@ -183,7 +181,6 @@
 			this.rightValue.TabIndex = 9;
 			this.rightValue.Text = "90";
 			this.rightValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			this.rightValue.TextChanged += new System.EventHandler(this.rightValue_TextChanged);
 			// 
 			// radarPlot
 			// 
