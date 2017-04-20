@@ -11,11 +11,15 @@ namespace Cybot_GUI
 	/// </summary>
 	public class SocketClient
 	{
-
 		/// <summary>
 		/// Get or set the port to connect to.
 		/// </summary>
 		public int Port;
+
+		/// <summary>
+		/// The command timeout in ms. Default is 10000ms.
+		/// </summary>
+		public uint CommandTimeout = 10000;
 
 		/// <summary>
 		/// The last exception that was thrown.
@@ -24,6 +28,8 @@ namespace Cybot_GUI
 
 		private IPAddress ip;
 		private Socket socket = null;
+		private volatile bool AwaitingCommand;
+		private volatile String AwaitedCommand;
 
 		/// <summary>
 		/// Get or set the Host IP address as a string.
@@ -129,6 +135,36 @@ namespace Cybot_GUI
 			}
 		}
 
+
+		/// <summary>
+		/// Writes a message with a newline to the server.
+		/// </summary>
+		/// <returns><c>true</c>, if write was successful, <c>false</c> otherwise.</returns>
+		/// <param name="msg">Message.</param>
+		public bool WriteLine(string msg)
+		{
+			return Write(msg + "\n");
+		}
+
+		/// <summary>
+		/// Sends command and waits for a reply.
+		/// </summary>
+		/// <returns>Reply from server in response to command.</returns>
+		/// <param name="msg">Command string.</param>
+		public String SendCommand(string msg)
+		{
+			AwaitingCommand = true;
+			WriteLine(msg);
+
+			uint time = 0;
+			while (AwaitingCommand && IsConnected() && time < CommandTimeout) {
+				Thread.Sleep(1);
+				time++;
+			}
+			if (time >= CommandTimeout) return "TIMEOUT:" + time;
+			return AwaitedCommand;
+		}
+
 		/// <summary>
 		/// Thread that processes received data
 		/// </summary>
@@ -150,6 +186,11 @@ namespace Cybot_GUI
 					if (size > 0) {
 						String inputSerial = Encoding.UTF8.GetString(bytes);
 						output.Report(inputSerial);
+
+						if (AwaitingCommand) {
+							AwaitedCommand = inputSerial;
+							AwaitingCommand = false;
+						}
 					}
 				} catch (Exception ex) {
 					WriteException(ex);

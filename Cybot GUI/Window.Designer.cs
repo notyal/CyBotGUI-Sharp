@@ -58,6 +58,7 @@
             this.connectionIP.TabIndex = 11;
             this.connectionIP.Text = "192.168.1.1";
             this.connectionIP.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.connectionIP_MaskInputRejected);
+			this.connectionIP.KeyDown += new System.Windows.Forms.KeyEventHandler(this.connectionIP_KeyDown);
             // 
             // ConnectButton
             // 

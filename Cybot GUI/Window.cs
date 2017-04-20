@@ -29,6 +29,7 @@ namespace Cybot_GUI
 			InitializeComponent();
 			ConnectButton.Text = connectText;
 			Radar = new RadarChart(radarPlot);
+			SetMovementControlsEnabled(false);
 		}
 
 		/// <summary>
@@ -64,6 +65,20 @@ namespace Cybot_GUI
 			l.SelectedIndex = -1;  // deselect the item
 		}
 
+		/// <summary>
+		/// Enable or disable movement buttons.
+		/// </summary>
+		/// <param name="b">If set to <c>true</c> enable the buttons, if <c>false</c> disable them.</param>
+		private void SetMovementControlsEnabled(bool b)
+		{
+			forwardButton.Enabled = b;
+			rightButton.Enabled = b;
+			leftButton.Enabled = b;
+			forwardValue.Enabled = b;
+			rightValue.Enabled = b;
+			leftValue.Enabled = b;
+		}
+
 		//Connect
 		private async void ConnectButton_Click(object sender, EventArgs e)
 		{
@@ -82,6 +97,7 @@ namespace Cybot_GUI
 				} else {
 					// actions to perform after successful connection
 					// http://stackoverflow.com/a/18033198
+					SetMovementControlsEnabled(true);
 					var output = new Progress<string>(s => WriteToLog(s, false));
 					await Task.Factory.StartNew(() => client.ReceiveThread(output, ReceiveThreadCancel.Token), TaskCreationOptions.LongRunning);
 					WriteToLog("Receive thread ended.\n");
@@ -92,6 +108,7 @@ namespace Cybot_GUI
 				ConnectButton.Text = connectText;
 
 				WriteToLog("Disconnecting...");
+				SetMovementControlsEnabled(false);
 
 				// tell receive to cancel
 				ReceiveThreadCancel.Cancel();
@@ -99,6 +116,7 @@ namespace Cybot_GUI
 				if (!client.Disconnect()) {
 					WriteToLog(client.LastErrorMessage + "...\n");
 					ConnectButton.Text = connectText;
+					SetMovementControlsEnabled(true);
 				} else {
 					WriteToLog("Disconnection done.\n");
 				}
@@ -141,12 +159,10 @@ namespace Cybot_GUI
                 try
                 {
                     int fV = Convert.ToInt16(forwardValue.Text);
-                    if (fV > 0)
-                    {
-                        WriteToLog("Moving forward " + fV + "mm");
-                    }
-                    //Insert Socket push here for forward movement.
-                    client.Write("M" + fV);
+                    if (fV > 0)  WriteToLog("Moving forward " + fV + "mm");
+
+					String r = client.SendCommand("M" + fV);
+					WriteToLog("Command Response: " + r);
                 }
                 catch (Exception a)
                 {
@@ -171,7 +187,9 @@ namespace Cybot_GUI
                     {
                         WriteToLog("Turning left " + lV + " degrees");
                     }
-                    //Insert Socket push here for left movement.
+					//Insert Socket push here for left movement.
+					String r = client.SendCommand("L" + lV);
+					WriteToLog("Command Response: " + r);
                 }
                 catch (Exception a)
                 {
@@ -192,11 +210,10 @@ namespace Cybot_GUI
                 try
                 {
                     int rV = Convert.ToInt16(rightValue.Text);
-                    if (rV > 0)
-                    {
-                        WriteToLog("Turning right " + rV + " degrees");
-                    }
-                    //Insert Socket push here for right movement.
+                    if (rV > 0) WriteToLog("Turning right " + rV + " degrees");
+					//Insert Socket push here for right movement.
+					String r = client.SendCommand("R" + rV);
+					WriteToLog("Command Response: " + r);
                 }
                 catch (Exception a)
                 {
@@ -231,7 +248,15 @@ namespace Cybot_GUI
 
 		private void connectionIP_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
 		{
+			
+		}
 
+		private void connectionIP_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Enter) {
+					e.SuppressKeyPress = true;
+					//ConnectButton_Click(sender, e);
+				}
 		}
 
 
