@@ -88,8 +88,8 @@
 			// 
 			this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.fileToolStripMenuItem,
-			this.graphToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.graphToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
 			this.menuStrip1.Padding = new System.Windows.Forms.Padding(9, 3, 0, 3);
@@ -100,8 +100,8 @@
 			// fileToolStripMenuItem
 			// 
 			this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.clearLogsToolStripMenuItem,
-			this.exitAltF4ToolStripMenuItem});
+            this.clearLogsToolStripMenuItem,
+            this.exitAltF4ToolStripMenuItem});
 			this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
 			this.fileToolStripMenuItem.Size = new System.Drawing.Size(50, 29);
 			this.fileToolStripMenuItem.Text = "File";
@@ -123,8 +123,8 @@
 			// graphToolStripMenuItem
 			// 
 			this.graphToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.saveGraphPNGToolStripMenuItem,
-			this.clearGraphToolStripMenuItem1});
+            this.saveGraphPNGToolStripMenuItem,
+            this.clearGraphToolStripMenuItem1});
 			this.graphToolStripMenuItem.Name = "graphToolStripMenuItem";
 			this.graphToolStripMenuItem.Size = new System.Drawing.Size(72, 29);
 			this.graphToolStripMenuItem.Text = "Graph";
@@ -212,7 +212,7 @@
 			this.radarPlot.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.radarPlot.Name = "radarPlot";
 			this.radarPlot.PanCursor = System.Windows.Forms.Cursors.Hand;
-			this.radarPlot.Size = new System.Drawing.Size(888, 646);
+			this.radarPlot.Size = new System.Drawing.Size(888, 1132);
 			this.radarPlot.TabIndex = 12;
 			this.radarPlot.Text = "Radar";
 			this.radarPlot.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
