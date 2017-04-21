@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 
 using OxyPlot;
@@ -68,7 +68,7 @@ namespace Cybot_GUI
 			// set max distance (x-axis)
 			Model.Axes.Add(new MagnitudeAxis {
 				Minimum = 20,
-				Maximum = 100,
+				Maximum = 70,
 				MajorGridlineStyle = LineStyle.Solid,
 				MinorGridlineStyle = LineStyle.Solid
 			});
@@ -76,6 +76,15 @@ namespace Cybot_GUI
 			Plot.Model = Model;
 			// update model
 			Refresh();
+
+			//FIXME DEBUG
+			#region debug
+			LineSeries a = new LineSeries();
+			a.Points.Add(new DataPoint(0, 90));
+			a.Points.Add(new DataPoint(30, 90));
+			Model.Series.Add(a);
+			Refresh();
+   			#endregion
 		}
 
 		/// <summary>
@@ -122,7 +131,9 @@ namespace Cybot_GUI
 		/// </summary>
 		public void ClearData()
 		{
+			Console.WriteLine("pre clear:" + Model.Series.Count);
 			Model.Series.Clear();
+			Console.WriteLine("post clear:" + Model.Series.Count);
 			Refresh();
 		}
 

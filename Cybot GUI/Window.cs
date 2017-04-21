@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -163,12 +163,12 @@ namespace Cybot_GUI
 		{
 			try {
 				int fV = Convert.ToInt16(forwardValue.Text);
-				if (fV > 0) WriteToLog("Moving forward " + fV + "mm");
+				if (fV > 0) WriteToLog("Moving forward " + fV + "mm\n");
 
 				String r = client.SendCommand("M" + fV);
 				WriteToLog("Command Response: " + r);
 			} catch (Exception a) {
-				WriteToLog("INVALID FORMAT" + a.Message);
+				WriteToLog("INVALID FORMAT " + a.Message + "\n");
 			}
 
 		}
@@ -178,12 +178,12 @@ namespace Cybot_GUI
 		{
 			try {
 				int lV = Convert.ToInt16(leftValue.Text);
-				if (lV > 0) WriteToLog("Turning left " + lV + " degrees");
+				if (lV > 0) WriteToLog("Turning left " + lV + " degrees...\n");
 
 				String r = client.SendCommand("L" + lV);
 				WriteToLog("Command Response: " + r);
 			} catch (Exception a) {
-				WriteToLog("INVALID FORMAT " + a.Message);
+				WriteToLog("INVALID FORMAT " + a.Message + "\n");
 			}
 
 		}
@@ -193,26 +193,28 @@ namespace Cybot_GUI
 		{
 			try {
 				int rV = Convert.ToInt16(rightValue.Text);
-				if (rV > 0) WriteToLog("Turning right " + rV + " degrees");
+				if (rV > 0) WriteToLog("Turning right " + rV + " degrees...\n");
 
 				String r = client.SendCommand("R" + rV);
 				WriteToLog("Command Response: " + r);
 			} catch (Exception a) {
-				WriteToLog("INVALID FORMAT " + a.Message);
+				WriteToLog("INVALID FORMAT " + a.Message + "\n");
 			}
 		}
 
 		private void scanButton_Click(object sender, EventArgs e)
 		{
+			WriteToLog("Scanning...\n");
 			client.WriteLine("S");
 		}
 		// ----- END MOVEMENT BUTTONS ----------------------------------------------------------------------------------
 
 
 		// ----- TOOL STRIP --------------------------------------------------------------------------------------------
-		private void clearGraphToolStripMenuItem_Click(object sender, EventArgs e)
+		private void clearGraphToolStripMenuItem1_Click(object sender, EventArgs e)
 		{
-
+			WriteToLog("Clearing log data...\n");
+			Radar.ClearData();
 		}
 
 		private void clearLogsToolStripMenuItem_Click(object sender, EventArgs e)

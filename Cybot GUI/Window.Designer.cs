@@ -141,6 +141,7 @@
 			this.clearGraphToolStripMenuItem1.Name = "clearGraphToolStripMenuItem1";
 			this.clearGraphToolStripMenuItem1.Size = new System.Drawing.Size(237, 30);
 			this.clearGraphToolStripMenuItem1.Text = "Clear Graph";
+			this.clearGraphToolStripMenuItem1.Click += new System.EventHandler(this.clearGraphToolStripMenuItem1_Click);
 			// 
 			// forwardButton
 			// 
