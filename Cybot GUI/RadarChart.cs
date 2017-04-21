@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
 
 using OxyPlot;
@@ -28,6 +28,26 @@ namespace Cybot_GUI
 		PlotModel Model;
 		ScatterSeries botPosition;
 		IProgress<string> log;
+		int distX;
+		int degY;
+
+		/// <summary>
+		/// Gets or sets the bot distance position from the initial scan.
+		/// </summary>
+		/// <value>The bot distance x-value.</value>
+		public int BotDistX {
+			get { return distX; }
+			set { SetBotPosition(value, degY); }
+		}
+
+		/// <summary>
+		/// Gets or sets the bot degree position from the initial scan.
+		/// </summary>
+		/// <value>The bot degree y-value.</value>
+		public int BotDegY {
+			get { return degY; }
+			set { SetBotPosition(distX, value); }
+		}
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="T:Cybot_GUI.RadarChart"/> class.
@@ -93,6 +113,9 @@ namespace Cybot_GUI
 		/// <param name="degY">Deg y.</param>
 		public void SetBotPosition(int distX, int degY)
 		{
+			this.distX = distX;
+			this.degY = degY;
+
 			Model.Series.Remove(botPosition);
 			botPosition.Points.Clear();
 
