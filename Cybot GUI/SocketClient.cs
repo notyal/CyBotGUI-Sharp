@@ -211,6 +211,13 @@ namespace Cybot_GUI
 						// log unprocessed data
 						log.Report("[unprocessed]: " + inputSerial);
 					}
+				} catch (SocketException ex) when (ex.ErrorCode == 10038) {
+					// ignore "The descriptor is not a socket"
+					// it usually happens when we kill the thread
+				} catch (SocketException ex) {
+					lastException = ex;
+					Console.WriteLine("SocketException Code: " + ex.ErrorCode);
+					Console.WriteLine(ex);
 				} catch (Exception ex) {
 					WriteException(ex);
 				}

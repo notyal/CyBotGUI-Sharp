@@ -29,7 +29,7 @@ namespace Cybot_GUI
 			InitializeComponent();
 			ConnectButton.Text = connectText;
 
-			var log = new Progress<string>(s => WriteToLog(s, false));
+			var log = new Progress<string>(s => WriteToLog(s + "\n", true));
 			Radar = new RadarChart(radarPlot, log);
 
 			SetMovementControlsEnabled(false);
@@ -124,7 +124,7 @@ namespace Cybot_GUI
 					SetMovementControlsEnabled(true);
 					WriteToLog("Success.\n");
 
-					var log = new Progress<string>(s => WriteToLog(s, false));
+					var log = new Progress<string>(s => WriteToLog(s + "\n", true));
 					var scandata = new Progress<string>(Radar.AddData);
 					await Task.Factory.StartNew(() => client.ReceiveThread(log, scandata, ReceiveThreadCancel.Token), TaskCreationOptions.LongRunning);
 					// the above line will block further lines until its thread ends
@@ -155,8 +155,8 @@ namespace Cybot_GUI
 			}
 		}
 
-		// ----- MOVEMENT BUTTONS --------------------------------------------------------------------------------------
 
+		// ----- MOVEMENT BUTTONS --------------------------------------------------------------------------------------
 		//Forward Button
 		private void forwardButton_Click(object sender, EventArgs e)
 		{
@@ -236,7 +236,6 @@ namespace Cybot_GUI
 		{
 
 		}
-
 		// ----- END LOGBOX --------------------------------------------------------------------------------------------
 
 
