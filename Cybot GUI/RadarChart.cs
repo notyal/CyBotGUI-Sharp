@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
+using OxyPlot.Annotations;
 using OxyPlot.WindowsForms;
 
 namespace Cybot_GUI
@@ -25,6 +26,7 @@ namespace Cybot_GUI
 
 		PlotView Plot;
 		PlotModel Model;
+		ScatterSeries botPosition;
 		IProgress<string> log;
 
 		/// <summary>
@@ -49,21 +51,20 @@ namespace Cybot_GUI
 				Title = "Radar Data",
 				PlotType = PlotType.Polar,
 				PlotAreaBorderThickness = new OxyThickness(0),
-				PlotMargins = new OxyThickness(5, 20, 5, 5)
+				PlotMargins = new OxyThickness(20, 10, 20, 5)
 			};
 
 			// setup max angle (y-axis)
-			Model.Axes.Add(
-				new AngleAxis {
-					Minimum = 0,
-					Maximum = 180,
-					MajorStep = 45,
-					MinorStep = 9,
-					StartAngle = 0,
-					EndAngle = 180,
-					MajorGridlineStyle = LineStyle.Solid,
-					MinorGridlineStyle = LineStyle.Solid
-				});
+			Model.Axes.Add(new AngleAxis {
+				Minimum = 0,
+				Maximum = 180,
+				MajorStep = 10,
+				MinorStep = 5,
+				StartAngle = 0,
+				EndAngle = 180,
+				MajorGridlineStyle = LineStyle.Solid,
+				MinorGridlineStyle = LineStyle.Solid,
+			});
 
 			// set max distance (x-axis)
 			Model.Axes.Add(new MagnitudeAxis {
@@ -72,19 +73,36 @@ namespace Cybot_GUI
 				MajorGridlineStyle = LineStyle.Solid,
 				MinorGridlineStyle = LineStyle.Solid
 			});
-			//Model.Series.Add(new FunctionSeries(x => Math.Sin(x / 180 * Math.PI), t => t, 0, 180, 0.01));
+
 			Plot.Model = Model;
+
 			// update model
 			Refresh();
 
-			//FIXME DEBUG
-			#region debug
-			LineSeries a = new LineSeries();
-			a.Points.Add(new DataPoint(0, 90));
-			a.Points.Add(new DataPoint(30, 90));
-			Model.Series.Add(a);
+			botPosition = new ScatterSeries();
+
+			SetBotPosition(20, 90);
+		}
+
+		/// <summary>
+		/// Sets the bot position. 90 deg is center
+		/// </summary>
+		/// <param name="distX">Dist x.</param>
+		/// <param name="degY">Deg y.</param>
+		public void SetBotPosition(int distX, int degY)
+		{
+			Model.Series.Remove(botPosition);
+			botPosition.Points.Clear();
+
+			botPosition.Points.Add(new ScatterPoint(distX, degY, 10));
+
+			// set color
+			botPosition.MarkerType = MarkerType.Circle;
+			botPosition.MarkerFill = OxyColors.DarkSlateBlue;
+			botPosition.MarkerStroke = OxyColors.Orchid;
+
+			Model.Series.Add(botPosition);
 			Refresh();
-   			#endregion
 		}
 
 		/// <summary>
@@ -102,7 +120,6 @@ namespace Cybot_GUI
 		public void AddData(string s)
 		{
 			// see the following for performance...
-			// nvm, it is fast as hell
 			// https://github.com/oxyplot/oxyplot/tree/develop/Source/Examples/WPF/WpfExamples/Examples/RealtimeDemo
 			// http://docs.oxyplot.org/en/latest/guidelines/performance.html
 			// https://github.com/oxyplot/oxyplot/blob/release/v1.0.0/Source/Examples/ExampleLibrary/Examples/ItemsSourceExamples.cs
@@ -112,11 +129,11 @@ namespace Cybot_GUI
 				ScanData d = ProcessData(s);
 				log.Report(String.Format("F:{0} T:{1} D:{2}", d.DegBegin, d.DegEnd, d.Dist));
 
-				// TODO add points to graph
-				LineSeries a = new LineSeries();
-				a.Points.Add(new DataPoint(d.Dist, d.DegBegin));
-				a.Points.Add(new DataPoint(d.Dist, d.DegEnd));
-				Model.Series.Add(a);
+				// add points to graph
+				LineSeries l = new LineSeries();
+				l.Points.Add(new DataPoint(d.Dist, d.DegBegin));
+				l.Points.Add(new DataPoint(d.Dist, d.DegEnd));
+				Model.Series.Add(l);
 				Refresh();
 			} catch (FormatException ex) {
 				log.Report(ex.Message);
@@ -131,9 +148,7 @@ namespace Cybot_GUI
 		/// </summary>
 		public void ClearData()
 		{
-			Console.WriteLine("pre clear:" + Model.Series.Count);
 			Model.Series.Clear();
-			Console.WriteLine("post clear:" + Model.Series.Count);
 			Refresh();
 		}
 

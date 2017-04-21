@@ -165,7 +165,7 @@ namespace Cybot_GUI
 				Thread.Sleep(1);
 				time++;
 			}
-			if (time >= CommandTimeout) return "TIMEOUT:" + time;
+			if (time >= CommandTimeout) return "TIMEOUT:" + time + "\n";
 			return AwaitedCommand;
 		}
 
@@ -259,7 +259,7 @@ namespace Cybot_GUI
 		{
 			lastException = ex;
 			Console.WriteLine();
-			Console.WriteLine("sdCaught Exception: " + ex.Message);
+			Console.WriteLine("[sc]Caught Exception: " + ex.Message);
 			Console.WriteLine(ex);
 			Console.WriteLine();
 		}
