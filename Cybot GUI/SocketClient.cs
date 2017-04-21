@@ -193,11 +193,11 @@ namespace Cybot_GUI
 			// http://stackoverflow.com/a/2661876
 			while (CheckSocketStatus(ct)) {
 				try {
-					// receive data (blocking)
 					byte[] bytes = new byte[1];
 					string serialData = "";
 
 					while (!serialData.Contains("\n") && CheckSocketStatus(ct)) {
+						// receive data (blocking)
 						socket.Receive(bytes);
 						serialData += Encoding.ASCII.GetString(bytes);
 					}
@@ -223,12 +223,11 @@ namespace Cybot_GUI
 		}
 
 		/// <summary>
-		/// Processes the data.
+		/// Processes the scan data.
 		/// </summary>
 		/// <param name="log">Log.</param>
 		/// <param name="scandata">Scandata.</param>
-		/// <param name="bytes">Bytes.</param>
-		/// <param name="size">Size.</param>
+		/// <param name="inputSerial">Input serial.</param>
 		private void ProcessData(IProgress<string> log, IProgress<string> scandata, string inputSerial)
 		{
 			// handle scandata

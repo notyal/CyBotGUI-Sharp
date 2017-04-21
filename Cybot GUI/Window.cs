@@ -65,7 +65,7 @@ namespace Cybot_GUI
 		}
 
 		/// <summary>
-		/// Autos the scroll.
+		/// Scroll a ListBox to the bottom.
 		/// </summary>
 		/// <param name="l">ListBox to autoscroll</param>
 		public static new void AutoScroll(ListBox l)
@@ -166,7 +166,8 @@ namespace Cybot_GUI
 				if (fV > 0) WriteToLog("Moving forward " + fV + "mm\n");
 
 				String r = client.SendCommand("M" + fV);
-				WriteToLog("Command Response: " + r);
+				//TODO parse response
+				WriteToLog("Command Response: " + r+ "\n");
 			} catch (Exception a) {
 				WriteToLog("INVALID FORMAT " + a.Message + "\n");
 			}
@@ -181,7 +182,8 @@ namespace Cybot_GUI
 				if (lV > 0) WriteToLog("Turning left " + lV + " degrees...\n");
 
 				String r = client.SendCommand("L" + lV);
-				WriteToLog("Command Response: " + r);
+				//TODO parse response
+				WriteToLog("Command Response: " + r+ "\n");
 			} catch (Exception a) {
 				WriteToLog("INVALID FORMAT " + a.Message + "\n");
 			}
@@ -196,12 +198,14 @@ namespace Cybot_GUI
 				if (rV > 0) WriteToLog("Turning right " + rV + " degrees...\n");
 
 				String r = client.SendCommand("R" + rV);
-				WriteToLog("Command Response: " + r);
+				//TODO parse response
+				WriteToLog("Command Response: " + r+ "\n");
 			} catch (Exception a) {
 				WriteToLog("INVALID FORMAT " + a.Message + "\n");
 			}
 		}
 
+		//Scan Button
 		private void scanButton_Click(object sender, EventArgs e)
 		{
 			Radar.ClearData();
@@ -212,22 +216,26 @@ namespace Cybot_GUI
 
 
 		// ----- TOOL STRIP --------------------------------------------------------------------------------------------
+		//Clear Graph
 		private void clearGraphToolStripMenuItem1_Click(object sender, EventArgs e)
 		{
 			WriteToLog("Clearing log data...\n");
 			Radar.ClearData();
 		}
 
+		//Clear Logs
 		private void clearLogsToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			logBox.Items.Clear();
 		}
 
+		//Exit
 		private void exitAltF4ToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			ExitApplication();
 		}
 
+		//Save Graph to PNG
 		private void saveGraphPNGToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			var pngExporter = new OxyPlot.WindowsForms.PngExporter { Width = 600, Height = 400, Background = OxyPlot.OxyColors.White };
