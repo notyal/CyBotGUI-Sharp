@@ -35,7 +35,7 @@ namespace Cybot_GUI
 			SetMovementControlsEnabled(false);
 
 			//DEBUG TODO
-			connectionIP.Text = "127.0.0.1";
+			//connectionIP.Text = "127.0.0.1";
 		}
 
 		/// <summary>

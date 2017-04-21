@@ -181,36 +181,15 @@ namespace Cybot_GUI
 
 			// check for data as long as we have no cancelation token and the socket is still alive
 			// http://stackoverflow.com/a/2661876
+			byte[] bytes;
 			while (!ct.IsCancellationRequested && !(socket.Poll(1, SelectMode.SelectRead) && socket.Available == 0)) {
-				byte[] bytes = new byte[256];
+				bytes = new byte[256];
 				int size;
 				try {
 					// receive data (blocking)
 					size = socket.Receive(bytes);
 
-					// only report data if buffer is >0
-					if (size > 0) {
-						String inputSerial = Encoding.UTF8.GetString(bytes);
-
-						// handle scandata
-						// having this before AwaitingCommand will allow us to process the data as it comes in
-						//   even if it comes before the awaited command
-						if (inputSerial.ToCharArray(0, 1)[0] == 'S') {
-							scandata.Report(inputSerial);
-							continue;
-						}
-
-						// handle if we are awaiting a command
-						// *not* recommended for scan data
-						if (AwaitingCommand) {
-							AwaitedCommand = inputSerial;
-							AwaitingCommand = false;
-							continue;
-						}
-
-						// log unprocessed data
-						log.Report("[unprocessed]: " + inputSerial);
-					}
+					ProcessData(log, scandata, bytes, size);
 				} catch (SocketException ex) when (ex.ErrorCode == 10038) {
 					// ignore "The descriptor is not a socket"
 					// it usually happens when we kill the thread
@@ -223,7 +202,41 @@ namespace Cybot_GUI
 				}
 			}
 
-			log.Report("Connection ended.");
+			log.Report("Connection ended.\n");
+		}
+
+		/// <summary>
+		/// Processes the data.
+		/// </summary>
+		/// <param name="log">Log.</param>
+		/// <param name="scandata">Scandata.</param>
+		/// <param name="bytes">Bytes.</param>
+		/// <param name="size">Size.</param>
+		private void ProcessData(IProgress<string> log, IProgress<string> scandata, byte[] bytes, int size)
+		{
+			// only report data if buffer is >0
+			if (size > 0) {
+				String inputSerial = Encoding.UTF8.GetString(bytes);
+
+				// handle scandata
+				// having this before AwaitingCommand will allow us to process the data as it comes in
+				//   even if it comes before the awaited command
+				if (inputSerial.ToCharArray(0, 1)[0] == 'S') {
+					scandata.Report(inputSerial);
+					return;
+				}
+
+				// handle if we are awaiting a command
+				// *not* recommended for scan data
+				if (AwaitingCommand) {
+					AwaitedCommand = inputSerial;
+					AwaitingCommand = false;
+					return;
+				}
+
+				// log unprocessed data
+				log.Report("[unprocessed]: " + inputSerial + "\n");
+			}
 		}
 
 		/// <summary>

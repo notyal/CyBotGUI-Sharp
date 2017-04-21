@@ -21,13 +21,11 @@ namespace Cybot_GUI
 			public uint DegBegin;
 			public uint DegEnd;
 			public uint Dist;
-			public uint Width;
 		}
 
 		PlotView Plot;
 		PlotModel Model;
 		IProgress<string> log;
-		List<DataPoint> points;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="T:Cybot_GUI.RadarChart"/> class.
@@ -69,8 +67,8 @@ namespace Cybot_GUI
 
 			// set max distance (x-axis)
 			Model.Axes.Add(new MagnitudeAxis {
-				Minimum = 0,
-				Maximum = 10,
+				Minimum = 20,
+				Maximum = 100,
 				MajorGridlineStyle = LineStyle.Solid,
 				MinorGridlineStyle = LineStyle.Solid
 			});
@@ -103,7 +101,7 @@ namespace Cybot_GUI
 			// attempt to process the data
 			try {
 				ScanData d = ProcessData(s);
-				log.Report(String.Format("F:{0} T:{1} D:{2} W:{3}", d.DegBegin, d.DegEnd, d.Dist, d.Width));
+				log.Report(String.Format("F:{0} T:{1} D:{2}", d.DegBegin, d.DegEnd, d.Dist));
 
 				// TODO add points to graph
 				LineSeries a = new LineSeries();
@@ -134,7 +132,7 @@ namespace Cybot_GUI
 		/// <param name="s">Data</param>
 		private ScanData ProcessData(string s)
 		{
-			log.Report("Radar GOT DATA: " + s);
+			log.Report("Radar GOT DATA: " + s + "\n");
 			String[] data = s.Split(' ');
 
 			#region test
@@ -146,13 +144,12 @@ namespace Cybot_GUI
 			//Console.WriteLine();
 			#endregion
 
-			// Length: 5
+			// Length: 4
 			//data[1] =[DEG_BEGIN]
 			//data[2] =[DEG_END]
 			//data[3] =[DIST]
-			//data[4] =[WIDTH]
 
-			if (data.Length != 5) {
+			if (data.Length != 4) {
 				throw new FormatException("Invalid scan data: incorrect length: " + data.Length);
 			}
 
@@ -160,7 +157,6 @@ namespace Cybot_GUI
 			ret.DegBegin = UInt16.Parse(data[1]);
 			ret.DegEnd = UInt16.Parse(data[2]);
 			ret.Dist = UInt16.Parse(data[3]);
-			ret.Width = UInt16.Parse(data[4]);
 			return ret;
 
 
