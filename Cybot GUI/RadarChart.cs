@@ -103,7 +103,8 @@ namespace Cybot_GUI
 
 			botPosition = new ScatterSeries();
 
-			SetBotPosition(20, 90); //DEBUG TODO
+			// set default position
+			SetBotPosition(0, 90);
 		}
 
 		/// <summary>

@@ -166,7 +166,19 @@ namespace Cybot_GUI
 				if (fV > 0) WriteToLog("Moving forward " + fV + "mm\n");
 
 				String r = client.SendCommand("M" + fV);
-				//TODO parse response
+
+				// parse response
+				try {
+					String[] res = r.Split(' ');
+					// todo handle rotations
+					if (res.Length >= 1) {
+						int dist = Int16.Parse(res[1]);
+						Radar.BotDistX += dist;
+					}
+				} catch (Exception ex) {
+					SocketClient.WriteException(ex);
+				}
+
 				WriteToLog("Command Response: " + r+ "\n");
 			} catch (Exception a) {
 				WriteToLog("INVALID FORMAT " + a.Message + "\n");
@@ -182,7 +194,19 @@ namespace Cybot_GUI
 				if (lV > 0) WriteToLog("Turning left " + lV + " degrees...\n");
 
 				String r = client.SendCommand("L" + lV);
-				//TODO parse response
+
+				// parse response
+				try {
+					String[] res = r.Split(' ');
+					if (res.Length >= 1) {
+						int lAmt = Int16.Parse(res[1]);
+						// todo handle rotations
+						//Radar.BotDistX += dist;
+					}
+				} catch (Exception ex) {
+					SocketClient.WriteException(ex);
+				}
+
 				WriteToLog("Command Response: " + r+ "\n");
 			} catch (Exception a) {
 				WriteToLog("INVALID FORMAT " + a.Message + "\n");
@@ -198,7 +222,20 @@ namespace Cybot_GUI
 				if (rV > 0) WriteToLog("Turning right " + rV + " degrees...\n");
 
 				String r = client.SendCommand("R" + rV);
-				//TODO parse response
+
+				// parse response
+				try {
+					String[] res = r.Split(' ');
+					if (res.Length >= 1) {
+						int rAmt = Int16.Parse(res[1]);
+						// todo handle rotations
+						//if (Radar.BotDegY + rAmt < 180)
+						//Radar.BotDistX += dist;
+					}
+				} catch (Exception ex) {
+					SocketClient.WriteException(ex);
+				}
+
 				WriteToLog("Command Response: " + r+ "\n");
 			} catch (Exception a) {
 				WriteToLog("INVALID FORMAT " + a.Message + "\n");
