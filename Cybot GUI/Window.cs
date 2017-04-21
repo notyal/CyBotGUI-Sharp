@@ -89,20 +89,6 @@ namespace Cybot_GUI
 			AutoScroll(logBox);
 		}
 
-		/// <summary>
-		/// Enable or disable movement buttons.
-		/// </summary>
-		/// <param name="b">If set to <c>true</c> enable the buttons, if <c>false</c> disable them.</param>
-		private void SetMovementControlsEnabled(bool b)
-		{
-			forwardButton.Enabled = b;
-			rightButton.Enabled = b;
-			leftButton.Enabled = b;
-			forwardValue.Enabled = b;
-			rightValue.Enabled = b;
-			leftValue.Enabled = b;
-		}
-
 		//Connect
 		private async void ConnectButton_Click(object sender, EventArgs e)
 		{
@@ -155,6 +141,21 @@ namespace Cybot_GUI
 			}
 		}
 
+		/// <summary>
+		/// Enable or disable movement buttons.
+		/// </summary>
+		/// <param name="b">If set to <c>true</c> enable the buttons, if <c>false</c> disable them.</param>
+		private void SetMovementControlsEnabled(bool b)
+		{
+			scanButton.Enabled = b;
+			forwardButton.Enabled = b;
+			rightButton.Enabled = b;
+			leftButton.Enabled = b;
+			forwardValue.Enabled = b;
+			rightValue.Enabled = b;
+			leftValue.Enabled = b;
+		}
+
 
 		// ----- MOVEMENT BUTTONS --------------------------------------------------------------------------------------
 		//Forward Button
@@ -199,6 +200,11 @@ namespace Cybot_GUI
 			} catch (Exception a) {
 				WriteToLog("INVALID FORMAT " + a.Message);
 			}
+		}
+
+		private void scanButton_Click(object sender, EventArgs e)
+		{
+			client.WriteLine("S");
 		}
 		// ----- END MOVEMENT BUTTONS ----------------------------------------------------------------------------------
 
@@ -256,11 +262,6 @@ namespace Cybot_GUI
 
 
 		private void radarPlot_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void scanButton_Click(object sender, EventArgs e)
 		{
 
 		}
