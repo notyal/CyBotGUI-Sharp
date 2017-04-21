@@ -259,5 +259,10 @@ namespace Cybot_GUI
 		{
 
 		}
-	}
+
+        private void scanButton_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
 }
