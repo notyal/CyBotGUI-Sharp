@@ -234,7 +234,7 @@ namespace Cybot_GUI
 		{
 			lastException = ex;
 			Console.WriteLine();
-			Console.WriteLine("SocketClient Caught Exception : " + ex.Message);
+			Console.WriteLine("Caught Exception: " + ex.Message);
 			Console.WriteLine(ex);
 			Console.WriteLine();
 		}

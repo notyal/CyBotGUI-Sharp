@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
@@ -11,9 +13,21 @@ namespace Cybot_GUI
 	/// </summary>
 	public class RadarChart
 	{
+		/// <summary>
+		/// Scan data.
+		/// </summary>
+		struct ScanData
+		{
+			public uint DegBegin;
+			public uint DegEnd;
+			public uint Dist;
+			public uint Width;
+		}
+
 		PlotView Plot;
 		PlotModel Model;
 		IProgress<string> log;
+		List<DataPoint> points;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="T:Cybot_GUI.RadarChart"/> class.
@@ -30,14 +44,17 @@ namespace Cybot_GUI
 
 		private void PlotInit()
 		{
-			#region debug
 			// https://github.com/oxyplot/oxyplot/blob/release/v1.0.0/Source/Examples/ExampleLibrary/Axes/PolarPlotExamples.cs#L129
+
+			// setup plot
 			Model = new PlotModel {
-				Title = "Semi-circle polar plot",
+				Title = "Radar Data",
 				PlotType = PlotType.Polar,
 				PlotAreaBorderThickness = new OxyThickness(0),
-				PlotMargins = new OxyThickness(60, 20, 4, 40)
+				PlotMargins = new OxyThickness(5, 20, 5, 5)
 			};
+
+			// setup max angle (y-axis)
 			Model.Axes.Add(
 				new AngleAxis {
 					Minimum = 0,
@@ -49,15 +66,16 @@ namespace Cybot_GUI
 					MajorGridlineStyle = LineStyle.Solid,
 					MinorGridlineStyle = LineStyle.Solid
 				});
+
+			// set max distance (x-axis)
 			Model.Axes.Add(new MagnitudeAxis {
 				Minimum = 0,
-				Maximum = 1,
+				Maximum = 10,
 				MajorGridlineStyle = LineStyle.Solid,
 				MinorGridlineStyle = LineStyle.Solid
 			});
-			Model.Series.Add(new FunctionSeries(x => Math.Sin(x / 180 * Math.PI), t => t, 0, 180, 0.01));
-			#endregion //debug
-
+			//Model.Series.Add(new FunctionSeries(x => Math.Sin(x / 180 * Math.PI), t => t, 0, 180, 0.01));
+			Plot.Model = Model;
 			// update model
 			Refresh();
 		}
@@ -67,7 +85,7 @@ namespace Cybot_GUI
 		/// </summary>
 		public void Refresh()
 		{
-			Plot.Model = Model;
+			Model.InvalidatePlot(true);
 		}
 
 		/// <summary>
@@ -77,10 +95,28 @@ namespace Cybot_GUI
 		public void AddData(string s)
 		{
 			// see the following for performance...
+			// nvm, it is fast as hell
+			// https://github.com/oxyplot/oxyplot/tree/develop/Source/Examples/WPF/WpfExamples/Examples/RealtimeDemo
 			// http://docs.oxyplot.org/en/latest/guidelines/performance.html
 			// https://github.com/oxyplot/oxyplot/blob/release/v1.0.0/Source/Examples/ExampleLibrary/Examples/ItemsSourceExamples.cs
-			//TODO
-			ProcessData(s);
+
+			// attempt to process the data
+			try {
+				ScanData d = ProcessData(s);
+				log.Report(String.Format("F:{0} T:{1} D:{2} W:{3}", d.DegBegin, d.DegEnd, d.Dist, d.Width));
+
+				// TODO add points to graph
+				LineSeries a = new LineSeries();
+				a.Points.Add(new DataPoint(d.Dist, d.DegBegin));
+				a.Points.Add(new DataPoint(d.Dist, d.DegEnd));
+				Model.Series.Add(a);
+				Refresh();
+			} catch (FormatException ex) {
+				log.Report(ex.Message);
+			} catch (Exception ex) {
+				SocketClient.WriteException(ex);
+			}
+
 		}
 
 		/// <summary>
@@ -88,19 +124,46 @@ namespace Cybot_GUI
 		/// </summary>
 		public void ClearData()
 		{
-			//TODO
+			Model.Series.Clear();
+			Refresh();
 		}
 
 		/// <summary>
 		/// Processes the data.
 		/// </summary>
 		/// <param name="s">Data</param>
-		private void ProcessData(string s)
+		private ScanData ProcessData(string s)
 		{
 			log.Report("Radar GOT DATA: " + s);
 			String[] data = s.Split(' ');
-			if (data.Length != 5); //error
-			//TODO
+
+			#region test
+			//Console.WriteLine();
+			//Console.WriteLine("Length: " + data.Length);
+			//for (int i = 1; i < data.Length; i++) {
+			//	Console.WriteLine(String.Format("\tdata[{0}]={1}", i, data[i]));
+			//}
+			//Console.WriteLine();
+			#endregion
+
+			// Length: 5
+			//data[1] =[DEG_BEGIN]
+			//data[2] =[DEG_END]
+			//data[3] =[DIST]
+			//data[4] =[WIDTH]
+
+			if (data.Length != 5) {
+				throw new FormatException("Invalid scan data: incorrect length: " + data.Length);
+			}
+
+			ScanData ret;
+			ret.DegBegin = UInt16.Parse(data[1]);
+			ret.DegEnd = UInt16.Parse(data[2]);
+			ret.Dist = UInt16.Parse(data[3]);
+			ret.Width = UInt16.Parse(data[4]);
+			return ret;
+
+
 		}
 		/// <summary>
 		/// Saves graph and openes file dialog to choose save location.
