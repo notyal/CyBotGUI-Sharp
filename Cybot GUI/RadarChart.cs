@@ -70,6 +70,8 @@ namespace Cybot_GUI
 			Model.Axes.Add(new MagnitudeAxis {
 				Minimum = 20,
 				Maximum = 70,
+				MajorStep = 5,
+				MinorStep = 1,
 				MajorGridlineStyle = LineStyle.Solid,
 				MinorGridlineStyle = LineStyle.Solid
 			});
@@ -81,7 +83,7 @@ namespace Cybot_GUI
 
 			botPosition = new ScatterSeries();
 
-			SetBotPosition(20, 90);
+			SetBotPosition(20, 90); //DEBUG TODO
 		}
 
 		/// <summary>
@@ -98,8 +100,8 @@ namespace Cybot_GUI
 
 			// set color
 			botPosition.MarkerType = MarkerType.Circle;
-			botPosition.MarkerFill = OxyColors.DarkSlateBlue;
-			botPosition.MarkerStroke = OxyColors.Orchid;
+			botPosition.MarkerFill = OxyColor.FromAColor(204, OxyColors.DarkSlateBlue); //alpha: 255 * .8 = 204
+			botPosition.MarkerStroke = botPosition.MarkerFill.Complementary();
 
 			Model.Series.Add(botPosition);
 			Refresh();
