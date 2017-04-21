@@ -160,45 +160,45 @@ namespace Cybot_GUI
 		//Forward Button
 		private void forwardButton_Click(object sender, EventArgs e)
 		{
-				try {
-					int fV = Convert.ToInt16(forwardValue.Text);
-					if (fV > 0) WriteToLog("Moving forward " + fV + "mm");
+			try {
+				int fV = Convert.ToInt16(forwardValue.Text);
+				if (fV > 0) WriteToLog("Moving forward " + fV + "mm");
 
-					String r = client.SendCommand("M" + fV);
-					WriteToLog("Command Response: " + r);
-				} catch (Exception a) {
-					WriteToLog("INVALID FORMAT" + a.Message);
-				}
+				String r = client.SendCommand("M" + fV);
+				WriteToLog("Command Response: " + r);
+			} catch (Exception a) {
+				WriteToLog("INVALID FORMAT" + a.Message);
+			}
 
 		}
 
 		//Left Button
 		private void leftButton_Click(object sender, EventArgs e)
 		{
-				try {
-					int lV = Convert.ToInt16(leftValue.Text);
-					if (lV > 0) WriteToLog("Turning left " + lV + " degrees");
+			try {
+				int lV = Convert.ToInt16(leftValue.Text);
+				if (lV > 0) WriteToLog("Turning left " + lV + " degrees");
 
-					String r = client.SendCommand("L" + lV);
-					WriteToLog("Command Response: " + r);
-				} catch (Exception a) {
-					WriteToLog("INVALID FORMAT " + a.Message);
-				}
+				String r = client.SendCommand("L" + lV);
+				WriteToLog("Command Response: " + r);
+			} catch (Exception a) {
+				WriteToLog("INVALID FORMAT " + a.Message);
+			}
 
 		}
 
 		//Right Button
 		private void rightButton_Click(object sender, EventArgs e)
 		{
-				try {
-					int rV = Convert.ToInt16(rightValue.Text);
-					if (rV > 0) WriteToLog("Turning right " + rV + " degrees");
+			try {
+				int rV = Convert.ToInt16(rightValue.Text);
+				if (rV > 0) WriteToLog("Turning right " + rV + " degrees");
 
-					String r = client.SendCommand("R" + rV);
-					WriteToLog("Command Response: " + r);
-				} catch (Exception a) {
-					WriteToLog("INVALID FORMAT " + a.Message);
-				}
+				String r = client.SendCommand("R" + rV);
+				WriteToLog("Command Response: " + r);
+			} catch (Exception a) {
+				WriteToLog("INVALID FORMAT " + a.Message);
+			}
 		}
 		// ----- END MOVEMENT BUTTONS ----------------------------------------------------------------------------------
 
