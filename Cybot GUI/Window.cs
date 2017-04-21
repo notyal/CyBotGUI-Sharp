@@ -227,7 +227,9 @@ namespace Cybot_GUI
 
 		private void saveGraphPNGToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-
+			var pngExporter = new OxyPlot.WindowsForms.PngExporter { Width = 600, Height = 400, Background = OxyPlot.OxyColors.White };
+			var bitmap = pngExporter.ExportToBitmap(Radar.GetPlotModel());
+			Clipboard.SetImage(bitmap);
 		}
 		// ----- END TOOL STRIP ----------------------------------------------------------------------------------------
 
