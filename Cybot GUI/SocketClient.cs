@@ -170,6 +170,16 @@ namespace Cybot_GUI
 		}
 
 		/// <summary>
+		/// Checks the socket status; also checks the CancellationToken
+		/// </summary>
+		/// <returns><c>true</c>, if socket is still open, <c>false</c> otherwise.</returns>
+		/// <param name="ct">Cancelation token.</param>
+		private bool CheckSocketStatus(CancellationToken ct)
+		{
+			return (!ct.IsCancellationRequested && !(socket.Poll(1, SelectMode.SelectRead) && socket.Available == 0));
+		}
+
+		/// <summary>
 		/// Thread that processes received data
 		/// </summary>
 		/// <param name="log">Log output.</param>
@@ -181,15 +191,22 @@ namespace Cybot_GUI
 
 			// check for data as long as we have no cancelation token and the socket is still alive
 			// http://stackoverflow.com/a/2661876
-			byte[] bytes;
-			while (!ct.IsCancellationRequested && !(socket.Poll(1, SelectMode.SelectRead) && socket.Available == 0)) {
-				bytes = new byte[256];
-				int size;
+			while (CheckSocketStatus(ct)) {
 				try {
 					// receive data (blocking)
-					size = socket.Receive(bytes);
+					byte[] bytes = new byte[1];
+					string serialData = "";
 
-					ProcessData(log, scandata, bytes, size);
+					while (!serialData.Contains("\n") && CheckSocketStatus(ct)) {
+						socket.Receive(bytes);
+						serialData += Encoding.ASCII.GetString(bytes);
+					}
+
+					Console.WriteLine(serialData);
+					ProcessData(log, scandata, serialData);
+
+
+					//ProcessData(log, scandata, bytes, size);
 				} catch (SocketException ex) when (ex.ErrorCode == 10038) {
 					// ignore "The descriptor is not a socket"
 					// it usually happens when we kill the thread
@@ -212,31 +229,26 @@ namespace Cybot_GUI
 		/// <param name="scandata">Scandata.</param>
 		/// <param name="bytes">Bytes.</param>
 		/// <param name="size">Size.</param>
-		private void ProcessData(IProgress<string> log, IProgress<string> scandata, byte[] bytes, int size)
+		private void ProcessData(IProgress<string> log, IProgress<string> scandata, string inputSerial)
 		{
-			// only report data if buffer is >0
-			if (size > 0) {
-				String inputSerial = Encoding.UTF8.GetString(bytes);
-
-				// handle scandata
-				// having this before AwaitingCommand will allow us to process the data as it comes in
-				//   even if it comes before the awaited command
-				if (inputSerial.ToCharArray(0, 1)[0] == 'S') {
-					scandata.Report(inputSerial);
-					return;
-				}
-
-				// handle if we are awaiting a command
-				// *not* recommended for scan data
-				if (AwaitingCommand) {
-					AwaitedCommand = inputSerial;
-					AwaitingCommand = false;
-					return;
-				}
-
-				// log unprocessed data
-				log.Report("[unprocessed]: " + inputSerial + "\n");
+			// handle scandata
+			// having this before AwaitingCommand will allow us to process the data as it comes in
+			//   even if it comes before the awaited command
+			if (inputSerial.ToCharArray(0, 1)[0] == 'S') {
+				scandata.Report(inputSerial);
+				return;
 			}
+
+			// handle if we are awaiting a command
+			// *not* recommended for scan data
+			if (AwaitingCommand) {
+				AwaitedCommand = inputSerial;
+				AwaitingCommand = false;
+				return;
+			}
+
+			// log unprocessed data
+			log.Report("[unprocessed]: " + inputSerial + "\n");
 		}
 
 		/// <summary>
@@ -247,7 +259,7 @@ namespace Cybot_GUI
 		{
 			lastException = ex;
 			Console.WriteLine();
-			Console.WriteLine("Caught Exception: " + ex.Message);
+			Console.WriteLine("sdCaught Exception: " + ex.Message);
 			Console.WriteLine(ex);
 			Console.WriteLine();
 		}
