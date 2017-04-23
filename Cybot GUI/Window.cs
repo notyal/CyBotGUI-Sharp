@@ -113,7 +113,8 @@ namespace Cybot_GUI
 
 					var log = new Progress<string>(s => WriteToLog(s + "\n", true));
 					var scandata = new Progress<string>(Radar.AddData);
-					await Task.Factory.StartNew(() => client.ReceiveThread(log, scandata, ReceiveThreadCancel.Token), TaskCreationOptions.LongRunning);
+					var sensordata = new Progress<string>(); //todo
+					await Task.Factory.StartNew(() => client.ReceiveThread(log, scandata, ReceiveThreadCancel.Token, sensordata), TaskCreationOptions.LongRunning);
 					// the above line will block further lines until its thread ends
 
 					WriteToLog("Receive thread ended.\n");
@@ -121,7 +122,6 @@ namespace Cybot_GUI
 					ConnectButton.Text = connectText;
 					SetMovementControlsEnabled(false);
 				}
-
 			} else {
 				// disconnected
 				ConnectButton.Text = connectText;

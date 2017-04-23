@@ -185,7 +185,8 @@ namespace Cybot_GUI
 		/// <param name="log">Log output.</param>
 		/// <param name="scandata">Raw scandata.</param>
 		/// <param name="ct">Token to cancel the thread.</param>
-		public void ReceiveThread(IProgress<string> log, IProgress<string> scandata, CancellationToken ct)
+		/// <param name="sensordata">Optional: Additonal Sensor Data.</param>
+		public void ReceiveThread(IProgress<string> log, IProgress<string> scandata, CancellationToken ct, IProgress<string> sensordata = null)
 		{
 			if (socket == null || !socket.Connected) return;
 
@@ -226,16 +227,27 @@ namespace Cybot_GUI
 		/// Processes the scan data.
 		/// </summary>
 		/// <param name="log">Log.</param>
-		/// <param name="scandata">Scandata.</param>
+		/// <param name="scandata">Scan Data.</param>
 		/// <param name="inputSerial">Input serial.</param>
-		private void ProcessData(IProgress<string> log, IProgress<string> scandata, string inputSerial)
+		/// <param name="sensordata">Optional: Additonal Sensor Data.</param>
+		private void ProcessData(IProgress<string> log, IProgress<string> scandata, string inputSerial, IProgress<string> sensordata = null)
 		{
 			// handle scandata
 			// having this before AwaitingCommand will allow us to process the data as it comes in
 			//   even if it comes before the awaited command
-			if (inputSerial.ToCharArray(0, 1)[0] == 'S') {
-				scandata.Report(inputSerial);
-				return;
+			switch (inputSerial.ToCharArray(0, 1)[0]) {
+				case 'S': {
+						scandata.Report(inputSerial);
+						return;
+					}
+				case 'C':
+				case 'N':
+				case 'G':
+				case 'B': {
+						if (sensordata != null) sensordata.Report(inputSerial);
+						else log.Report("[unprocessed sensor]: " + inputSerial + "\n");
+						return;
+					}
 			}
 
 			// handle if we are awaiting a command

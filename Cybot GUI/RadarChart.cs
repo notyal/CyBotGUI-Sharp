@@ -190,24 +190,23 @@ namespace Cybot_GUI
 		{
 			log.Report("Radar GOT DATA: " + s + "\n");
 			String[] data = s.Split(' ');
+				#region test
+				//Console.WriteLine();
+				//Console.WriteLine("Length: " + data.Length);
+				//for (int i = 1; i < data.Length; i++) {
+				//	Console.WriteLine(String.Format("\tdata[{0}]={1}", i, data[i]));
+				//}
+				//Console.WriteLine();
+				#endregion
 
-			#region test
-			//Console.WriteLine();
-			//Console.WriteLine("Length: " + data.Length);
-			//for (int i = 1; i < data.Length; i++) {
-			//	Console.WriteLine(String.Format("\tdata[{0}]={1}", i, data[i]));
-			//}
-			//Console.WriteLine();
-			#endregion
-
-			// Length: 4
-			//data[1] =[DEG_BEGIN]
-			//data[2] =[DEG_END]
-			//data[3] =[DIST]
+				// Length: 4
+				//data[1] =[DEG_BEGIN]
+				//data[2] =[DEG_END]
+				//data[3] =[DIST]
 
 			if (data.Length != 4) {
-				throw new FormatException("Invalid scan data: incorrect length: " + data.Length);
-			}
+					throw new FormatException("Invalid scan data: incorrect length: " + data.Length);
+				}
 
 			ScanData ret;
 			ret.DegBegin = UInt16.Parse(data[1]);
