@@ -151,9 +151,6 @@ namespace Cybot_GUI
 			forwardButton.Enabled = b;
 			rightButton.Enabled = b;
 			leftButton.Enabled = b;
-			forwardValue.Enabled = b;
-			rightValue.Enabled = b;
-			leftValue.Enabled = b;
 		}
 
 
@@ -162,10 +159,9 @@ namespace Cybot_GUI
 		private void forwardButton_Click(object sender, EventArgs e)
 		{
 			try {
-				int fV = Convert.ToInt16(forwardValue.Text);
-				if (fV > 0) WriteToLog("Moving forward " + fV + "mm\n");
+				WriteToLog("Moving forward\n");
 
-				String r = client.SendCommand("M" + fV);
+				String r = client.SendCommand("M");
 
 				// parse response
 				try {
@@ -190,10 +186,9 @@ namespace Cybot_GUI
 		private void leftButton_Click(object sender, EventArgs e)
 		{
 			try {
-				int lV = Convert.ToInt16(leftValue.Text);
-				if (lV > 0) WriteToLog("Turning left " + lV + " degrees...\n");
+				WriteToLog("Turning left\n");
 
-				String r = client.SendCommand("L" + lV);
+				String r = client.SendCommand("L");
 
 				// parse response
 				try {
@@ -218,9 +213,9 @@ namespace Cybot_GUI
 		private void rightButton_Click(object sender, EventArgs e)
 		{
 			try {
-				if (rV > 0) WriteToLog("Turning right\n");
+				WriteToLog("Turning right\n");
 
-				String r = client.SendCommand("R" + rV);
+				String r = client.SendCommand("R");
 
 				// parse response
 				try {
