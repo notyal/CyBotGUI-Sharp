@@ -1,4 +1,5 @@
-﻿﻿using System;
+﻿using OxyPlot.WindowsForms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -243,6 +244,12 @@ namespace Cybot_GUI
 			WriteToLog("Scanning...\n");
 			client.WriteLine("S");
 		}
+
+		private void getData_Click(object sender, EventArgs e)
+		{
+			WriteToLog("Sending Data...\n");
+			client.WriteLine("D");
+		}
 		// ----- END MOVEMENT BUTTONS ----------------------------------------------------------------------------------
 
 
@@ -272,7 +279,7 @@ namespace Cybot_GUI
 			var pngExporter = new OxyPlot.WindowsForms.PngExporter { Width = 600, Height = 400, Background = OxyPlot.OxyColors.White };
 			var bitmap = pngExporter.ExportToBitmap(Radar.GetPlotModel());
 			Clipboard.SetImage(bitmap);
-			pngExporter.ExportToFile(Radar.GetPlotModel(), fileName);
+			pngExporter.ExportToFile(Radar.GetPlotModel(), "graphPlot");
 		}
 		// ----- END TOOL STRIP ----------------------------------------------------------------------------------------
 
@@ -316,7 +323,13 @@ namespace Cybot_GUI
 		private void playSong1ToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			WriteToLog("Playing Melee Theme...\n");
+			client.WriteLine("X");
+		}
+		private void playSong2ToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			WriteToLog("Playing Gamecube Theme...\n");
 			client.WriteLine("Y");
 		}
+
 	}
 }
