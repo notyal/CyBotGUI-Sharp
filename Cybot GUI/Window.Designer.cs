@@ -48,6 +48,7 @@
 			this.radarPlot = new OxyPlot.WindowsForms.PlotView();
 			this.scanButton = new System.Windows.Forms.Button();
 			this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+			this.mapPlot = new OxyPlot.WindowsForms.PlotView();
 			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -95,7 +96,7 @@
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
 			this.menuStrip1.Padding = new System.Windows.Forms.Padding(9, 3, 0, 3);
-			this.menuStrip1.Size = new System.Drawing.Size(1394, 35);
+			this.menuStrip1.Size = new System.Drawing.Size(2148, 35);
 			this.menuStrip1.TabIndex = 3;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
@@ -158,20 +159,20 @@
 			// playSong1ToolStripMenuItem
 			// 
 			this.playSong1ToolStripMenuItem.Name = "playSong1ToolStripMenuItem";
-			this.playSong1ToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
+			this.playSong1ToolStripMenuItem.Size = new System.Drawing.Size(191, 30);
 			this.playSong1ToolStripMenuItem.Text = "Play Song 1";
 			this.playSong1ToolStripMenuItem.Click += new System.EventHandler(this.playSong1ToolStripMenuItem_Click);
 			// 
 			// playSong2ToolStripMenuItem
 			// 
 			this.playSong2ToolStripMenuItem.Name = "playSong2ToolStripMenuItem";
-			this.playSong2ToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
+			this.playSong2ToolStripMenuItem.Size = new System.Drawing.Size(191, 30);
 			this.playSong2ToolStripMenuItem.Text = "Play Song 2";
 			// 
 			// playSong3ToolStripMenuItem
 			// 
 			this.playSong3ToolStripMenuItem.Name = "playSong3ToolStripMenuItem";
-			this.playSong3ToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
+			this.playSong3ToolStripMenuItem.Size = new System.Drawing.Size(191, 30);
 			this.playSong3ToolStripMenuItem.Text = "Play Song 3";
 			// 
 			// forwardButton
@@ -231,11 +232,26 @@
 			this.scanButton.UseVisualStyleBackColor = true;
 			this.scanButton.Click += new System.EventHandler(this.scanButton_Click);
 			// 
+			// mapPlot
+			// 
+			this.mapPlot.Location = new System.Drawing.Point(1363, 42);
+			this.mapPlot.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.mapPlot.Name = "mapPlot";
+			this.mapPlot.PanCursor = System.Windows.Forms.Cursors.Hand;
+			this.mapPlot.Size = new System.Drawing.Size(772, 661);
+			this.mapPlot.TabIndex = 14;
+			this.mapPlot.Text = "Map";
+			this.mapPlot.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
+			this.mapPlot.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
+			this.mapPlot.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
+			this.mapPlot.Click += new System.EventHandler(this.mapPlot_Click);
+			// 
 			// CyBotGUI
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1394, 706);
+			this.ClientSize = new System.Drawing.Size(2148, 706);
+			this.Controls.Add(this.mapPlot);
 			this.Controls.Add(this.scanButton);
 			this.Controls.Add(this.radarPlot);
 			this.Controls.Add(this.leftButton);
@@ -282,6 +298,7 @@
 		private System.Windows.Forms.ToolStripMenuItem playSong1ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem playSong2ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem playSong3ToolStripMenuItem;
+		private OxyPlot.WindowsForms.PlotView mapPlot;
 	}
 }
 

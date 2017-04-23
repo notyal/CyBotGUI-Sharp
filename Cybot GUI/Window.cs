@@ -272,6 +272,7 @@ namespace Cybot_GUI
 			var pngExporter = new OxyPlot.WindowsForms.PngExporter { Width = 600, Height = 400, Background = OxyPlot.OxyColors.White };
 			var bitmap = pngExporter.ExportToBitmap(Radar.GetPlotModel());
 			Clipboard.SetImage(bitmap);
+			pngExporter.ExportToFile(Radar.GetPlotModel(), fileName);
 		}
 		// ----- END TOOL STRIP ----------------------------------------------------------------------------------------
 
