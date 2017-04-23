@@ -248,6 +248,11 @@ namespace Cybot_GUI
 			Radar.ClearData();
 			WriteToLog("Scanning...\n");
 			client.WriteLine("S");
+			for (int i = 0; i < 100; i++)
+			{
+				System.Threading.Thread.Sleep(275);
+				progressBar.Increment(i);
+			}
 		}
 		// ----- END MOVEMENT BUTTONS ----------------------------------------------------------------------------------
 
@@ -313,7 +318,9 @@ namespace Cybot_GUI
 
 		private void radarPlot_Click(object sender, EventArgs e)
 		{
-
+			var pngExporter = new OxyPlot.WindowsForms.PngExporter { Width = 600, Height = 400, Background = OxyPlot.OxyColors.White };
+			var bitmap = pngExporter.ExportToBitmap(Radar.GetPlotModel());
+			Clipboard.SetImage(bitmap);
 		}
 	}
 }
