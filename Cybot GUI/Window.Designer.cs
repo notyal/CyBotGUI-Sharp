@@ -54,9 +54,18 @@
 			this.funToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.victoryDanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.macroForward = new System.Windows.Forms.Button();
-			this.lightBump = new System.Windows.Forms.Label();
-			this.label1 = new System.Windows.Forms.Label();
-			this.label2 = new System.Windows.Forms.Label();
+			this.lineBumpL = new System.Windows.Forms.Label();
+			this.lineBumpR = new System.Windows.Forms.Label();
+			this.lineBumpFR = new System.Windows.Forms.Label();
+			this.lineBumpFL = new System.Windows.Forms.Label();
+			this.lightBumpR = new System.Windows.Forms.Label();
+			this.lightBumpFR = new System.Windows.Forms.Label();
+			this.lightBumpCR = new System.Windows.Forms.Label();
+			this.lightBumpCL = new System.Windows.Forms.Label();
+			this.lightBumpFL = new System.Windows.Forms.Label();
+			this.lightBumpL = new System.Windows.Forms.Label();
+			this.label10 = new System.Windows.Forms.Label();
+			this.label11 = new System.Windows.Forms.Label();
 			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -303,35 +312,123 @@
 			this.macroForward.UseVisualStyleBackColor = false;
 			this.macroForward.Click += new System.EventHandler(this.macroForward_Click);
 			// 
-			// lightBump
+			// lineBumpL
 			// 
-			this.lightBump.AutoSize = true;
-			this.lightBump.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.lightBump.Location = new System.Drawing.Point(433, 200);
-			this.lightBump.Name = "lightBump";
-			this.lightBump.Size = new System.Drawing.Size(20, 22);
-			this.lightBump.TabIndex = 20;
-			this.lightBump.Text = "L";
+			this.lineBumpL.AutoSize = true;
+			this.lineBumpL.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.lineBumpL.Location = new System.Drawing.Point(437, 191);
+			this.lineBumpL.Name = "lineBumpL";
+			this.lineBumpL.Size = new System.Drawing.Size(20, 22);
+			this.lineBumpL.TabIndex = 20;
+			this.lineBumpL.Text = "L";
 			// 
-			// label1
+			// lineBumpR
 			// 
-			this.label1.AutoSize = true;
-			this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.label1.Location = new System.Drawing.Point(563, 200);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(23, 22);
-			this.label1.TabIndex = 21;
-			this.label1.Text = "R";
+			this.lineBumpR.AutoSize = true;
+			this.lineBumpR.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.lineBumpR.Location = new System.Drawing.Point(546, 191);
+			this.lineBumpR.Name = "lineBumpR";
+			this.lineBumpR.Size = new System.Drawing.Size(23, 22);
+			this.lineBumpR.TabIndex = 21;
+			this.lineBumpR.Text = "R";
 			// 
-			// label2
+			// lineBumpFR
 			// 
-			this.label2.AutoSize = true;
-			this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.label2.Location = new System.Drawing.Point(493, 200);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(22, 22);
-			this.label2.TabIndex = 22;
-			this.label2.Text = "C";
+			this.lineBumpFR.AutoSize = true;
+			this.lineBumpFR.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.lineBumpFR.Location = new System.Drawing.Point(507, 191);
+			this.lineBumpFR.Name = "lineBumpFR";
+			this.lineBumpFR.Size = new System.Drawing.Size(33, 22);
+			this.lineBumpFR.TabIndex = 22;
+			this.lineBumpFR.Text = "FR";
+			// 
+			// lineBumpFL
+			// 
+			this.lineBumpFL.AutoSize = true;
+			this.lineBumpFL.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.lineBumpFL.Location = new System.Drawing.Point(463, 191);
+			this.lineBumpFL.Name = "lineBumpFL";
+			this.lineBumpFL.Size = new System.Drawing.Size(30, 22);
+			this.lineBumpFL.TabIndex = 24;
+			this.lineBumpFL.Text = "FL";
+			// 
+			// lightBumpR
+			// 
+			this.lightBumpR.AutoSize = true;
+			this.lightBumpR.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.lightBumpR.Location = new System.Drawing.Point(585, 235);
+			this.lightBumpR.Name = "lightBumpR";
+			this.lightBumpR.Size = new System.Drawing.Size(23, 22);
+			this.lightBumpR.TabIndex = 25;
+			this.lightBumpR.Text = "R";
+			// 
+			// lightBumpFR
+			// 
+			this.lightBumpFR.AutoSize = true;
+			this.lightBumpFR.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.lightBumpFR.Location = new System.Drawing.Point(546, 235);
+			this.lightBumpFR.Name = "lightBumpFR";
+			this.lightBumpFR.Size = new System.Drawing.Size(33, 22);
+			this.lightBumpFR.TabIndex = 26;
+			this.lightBumpFR.Text = "FR";
+			// 
+			// lightBumpCR
+			// 
+			this.lightBumpCR.AutoSize = true;
+			this.lightBumpCR.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.lightBumpCR.Location = new System.Drawing.Point(506, 235);
+			this.lightBumpCR.Name = "lightBumpCR";
+			this.lightBumpCR.Size = new System.Drawing.Size(34, 22);
+			this.lightBumpCR.TabIndex = 27;
+			this.lightBumpCR.Text = "CR";
+			// 
+			// lightBumpCL
+			// 
+			this.lightBumpCL.AutoSize = true;
+			this.lightBumpCL.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.lightBumpCL.Location = new System.Drawing.Point(462, 235);
+			this.lightBumpCL.Name = "lightBumpCL";
+			this.lightBumpCL.Size = new System.Drawing.Size(31, 22);
+			this.lightBumpCL.TabIndex = 28;
+			this.lightBumpCL.Text = "CL";
+			// 
+			// lightBumpFL
+			// 
+			this.lightBumpFL.AutoSize = true;
+			this.lightBumpFL.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.lightBumpFL.Location = new System.Drawing.Point(426, 235);
+			this.lightBumpFL.Name = "lightBumpFL";
+			this.lightBumpFL.Size = new System.Drawing.Size(30, 22);
+			this.lightBumpFL.TabIndex = 29;
+			this.lightBumpFL.Text = "FL";
+			// 
+			// lightBumpL
+			// 
+			this.lightBumpL.AutoSize = true;
+			this.lightBumpL.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.lightBumpL.Location = new System.Drawing.Point(400, 235);
+			this.lightBumpL.Name = "lightBumpL";
+			this.lightBumpL.Size = new System.Drawing.Size(20, 22);
+			this.lightBumpL.TabIndex = 30;
+			this.lightBumpL.Text = "L";
+			// 
+			// label10
+			// 
+			this.label10.AutoSize = true;
+			this.label10.Location = new System.Drawing.Point(333, 200);
+			this.label10.Name = "label10";
+			this.label10.Size = new System.Drawing.Size(39, 20);
+			this.label10.TabIndex = 31;
+			this.label10.Text = "Line";
+			// 
+			// label11
+			// 
+			this.label11.AutoSize = true;
+			this.label11.Location = new System.Drawing.Point(333, 237);
+			this.label11.Name = "label11";
+			this.label11.Size = new System.Drawing.Size(44, 20);
+			this.label11.TabIndex = 32;
+			this.label11.Text = "Light";
 			// 
 			// CyBotGUI
 			// 
@@ -339,9 +436,18 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoSize = true;
 			this.ClientSize = new System.Drawing.Size(2152, 1201);
-			this.Controls.Add(this.label2);
-			this.Controls.Add(this.label1);
-			this.Controls.Add(this.lightBump);
+			this.Controls.Add(this.label11);
+			this.Controls.Add(this.label10);
+			this.Controls.Add(this.lightBumpL);
+			this.Controls.Add(this.lightBumpFL);
+			this.Controls.Add(this.lightBumpCL);
+			this.Controls.Add(this.lightBumpCR);
+			this.Controls.Add(this.lightBumpFR);
+			this.Controls.Add(this.lightBumpR);
+			this.Controls.Add(this.lineBumpFL);
+			this.Controls.Add(this.lineBumpFR);
+			this.Controls.Add(this.lineBumpR);
+			this.Controls.Add(this.lineBumpL);
 			this.Controls.Add(this.macroForward);
 			this.Controls.Add(this.right90);
 			this.Controls.Add(this.left90);
@@ -398,9 +504,18 @@
 		private System.Windows.Forms.ToolStripMenuItem funToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem victoryDanceToolStripMenuItem;
 		private System.Windows.Forms.Button macroForward;
-		private System.Windows.Forms.Label lightBump;
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.Label lineBumpL;
+		private System.Windows.Forms.Label lineBumpR;
+		private System.Windows.Forms.Label lineBumpFR;
+		private System.Windows.Forms.Label lineBumpFL;
+		private System.Windows.Forms.Label lightBumpR;
+		private System.Windows.Forms.Label lightBumpFR;
+		private System.Windows.Forms.Label lightBumpCR;
+		private System.Windows.Forms.Label lightBumpCL;
+		private System.Windows.Forms.Label lightBumpFL;
+		private System.Windows.Forms.Label lightBumpL;
+		private System.Windows.Forms.Label label10;
+		private System.Windows.Forms.Label label11;
 	}
 }
 
