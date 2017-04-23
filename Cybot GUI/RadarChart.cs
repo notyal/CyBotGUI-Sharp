@@ -71,7 +71,7 @@ namespace Cybot_GUI
 				Title = "Radar Data",
 				PlotType = PlotType.Polar,
 				PlotAreaBorderThickness = new OxyThickness(0),
-				PlotMargins = new OxyThickness(20, 10, 20, 5)
+				PlotMargins = new OxyThickness(20, 30, 20, 5)
 			};
 
 			// setup max angle (y-axis)
@@ -88,10 +88,10 @@ namespace Cybot_GUI
 
 			// set max distance (x-axis)
 			Model.Axes.Add(new MagnitudeAxis {
-				Minimum = 20,
-				Maximum = 70,
-				MajorStep = 5,
-				MinorStep = 1,
+				Minimum = 15,
+				Maximum = 100,
+				MajorStep = 10,
+				MinorStep = 5,
 				MajorGridlineStyle = LineStyle.Solid,
 				MinorGridlineStyle = LineStyle.Solid
 			});
