@@ -21,21 +21,21 @@ namespace Cybot_GUI
 		{
 			public uint DegBegin;
 			public uint DegEnd;
-			public float Dist;
+			public double Dist;
 		}
 
 		PlotView Plot;
 		PlotModel Model;
 		ScatterSeries botPosition;
 		IProgress<string> log;
-		int distX;
-		int degY;
+		double distX;
+		double degY;
 
 		/// <summary>
 		/// Gets or sets the bot distance position from the initial scan.
 		/// </summary>
 		/// <value>The bot distance x-value.</value>
-		public int BotDistX {
+		public double BotDistX {
 			get { return distX; }
 			set { SetBotPosition(value, degY); }
 		}
@@ -44,7 +44,7 @@ namespace Cybot_GUI
 		/// Gets or sets the bot degree position from the initial scan.
 		/// </summary>
 		/// <value>The bot degree y-value.</value>
-		public int BotDegY {
+		public double BotDegY {
 			get { return degY; }
 			set { SetBotPosition(distX, value); }
 		}
@@ -104,7 +104,7 @@ namespace Cybot_GUI
 			botPosition = new ScatterSeries();
 
 			// set default position
-			SetBotPosition(0, 90);
+			SetBotPosition(10, 90);
 		}
 
 		/// <summary>
@@ -112,7 +112,7 @@ namespace Cybot_GUI
 		/// </summary>
 		/// <param name="distX">Dist x.</param>
 		/// <param name="degY">Deg y.</param>
-		public void SetBotPosition(int distX, int degY)
+		public void SetBotPosition(double distX, double degY)
 		{
 			this.distX = distX;
 			this.degY = degY;
@@ -153,7 +153,7 @@ namespace Cybot_GUI
 			// attempt to process the data
 			try {
 				ScanData d = ProcessData(s);
-				log.Report(String.Format("F:{0} T:{1} D:{2}", d.DegBegin, d.DegEnd, d.Dist/10.0));
+				log.Report(String.Format("F:{0} T:{1} D:{2}", d.DegBegin, d.DegEnd, d.Dist));
 
 				// add points to graph
 				LineSeries l = new LineSeries();
@@ -177,7 +177,7 @@ namespace Cybot_GUI
 			Model.Series.Clear();
 			
 			// set default position
-			SetBotPosition(0, 90);
+			SetBotPosition(10, 90);
 
 			Refresh();
 		}
@@ -212,7 +212,7 @@ namespace Cybot_GUI
 			ScanData ret;
 			ret.DegBegin = UInt16.Parse(data[1]);
 			ret.DegEnd = UInt16.Parse(data[2]);
-			ret.Dist = float.Parse(data[3]);
+			ret.Dist = double.Parse(data[3]);
 			return ret;
 
 
