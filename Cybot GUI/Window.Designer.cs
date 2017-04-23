@@ -54,6 +54,9 @@
 			this.funToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.victoryDanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.macroForward = new System.Windows.Forms.Button();
+			this.lightBump = new System.Windows.Forms.Label();
+			this.label1 = new System.Windows.Forms.Label();
+			this.label2 = new System.Windows.Forms.Label();
 			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -185,21 +188,22 @@
 			// 
 			// forwardButton
 			// 
-			this.forwardButton.Location = new System.Drawing.Point(26, 95);
+			this.forwardButton.BackColor = System.Drawing.Color.LimeGreen;
+			this.forwardButton.Location = new System.Drawing.Point(94, 76);
 			this.forwardButton.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
 			this.forwardButton.Name = "forwardButton";
-			this.forwardButton.Size = new System.Drawing.Size(183, 35);
+			this.forwardButton.Size = new System.Drawing.Size(136, 35);
 			this.forwardButton.TabIndex = 4;
 			this.forwardButton.Text = "Micro Forward";
-			this.forwardButton.UseVisualStyleBackColor = true;
+			this.forwardButton.UseVisualStyleBackColor = false;
 			this.forwardButton.Click += new System.EventHandler(this.forwardButton_Click);
 			// 
 			// rightButton
 			// 
-			this.rightButton.Location = new System.Drawing.Point(26, 185);
+			this.rightButton.Location = new System.Drawing.Point(168, 138);
 			this.rightButton.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
 			this.rightButton.Name = "rightButton";
-			this.rightButton.Size = new System.Drawing.Size(183, 35);
+			this.rightButton.Size = new System.Drawing.Size(136, 35);
 			this.rightButton.TabIndex = 5;
 			this.rightButton.Text = "Right 10";
 			this.rightButton.UseVisualStyleBackColor = true;
@@ -210,7 +214,7 @@
 			this.leftButton.Location = new System.Drawing.Point(26, 140);
 			this.leftButton.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
 			this.leftButton.Name = "leftButton";
-			this.leftButton.Size = new System.Drawing.Size(183, 35);
+			this.leftButton.Size = new System.Drawing.Size(136, 35);
 			this.leftButton.TabIndex = 6;
 			this.leftButton.Text = "Left 10";
 			this.leftButton.UseVisualStyleBackColor = true;
@@ -218,7 +222,7 @@
 			// 
 			// radarPlot
 			// 
-			this.radarPlot.Location = new System.Drawing.Point(656, 42);
+			this.radarPlot.Location = new System.Drawing.Point(648, 40);
 			this.radarPlot.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
 			this.radarPlot.Name = "radarPlot";
 			this.radarPlot.PanCursor = System.Windows.Forms.Cursors.Hand;
@@ -254,7 +258,7 @@
 			// 
 			// left90
 			// 
-			this.left90.Location = new System.Drawing.Point(218, 140);
+			this.left90.Location = new System.Drawing.Point(26, 183);
 			this.left90.Name = "left90";
 			this.left90.Size = new System.Drawing.Size(136, 37);
 			this.left90.TabIndex = 16;
@@ -264,7 +268,7 @@
 			// 
 			// right90
 			// 
-			this.right90.Location = new System.Drawing.Point(218, 183);
+			this.right90.Location = new System.Drawing.Point(168, 183);
 			this.right90.Name = "right90";
 			this.right90.Size = new System.Drawing.Size(136, 37);
 			this.right90.TabIndex = 17;
@@ -290,13 +294,44 @@
 			// 
 			// macroForward
 			// 
-			this.macroForward.Location = new System.Drawing.Point(218, 95);
+			this.macroForward.BackColor = System.Drawing.Color.ForestGreen;
+			this.macroForward.Location = new System.Drawing.Point(236, 76);
 			this.macroForward.Name = "macroForward";
 			this.macroForward.Size = new System.Drawing.Size(136, 35);
 			this.macroForward.TabIndex = 18;
 			this.macroForward.Text = "Macro Forward";
-			this.macroForward.UseVisualStyleBackColor = true;
+			this.macroForward.UseVisualStyleBackColor = false;
 			this.macroForward.Click += new System.EventHandler(this.macroForward_Click);
+			// 
+			// lightBump
+			// 
+			this.lightBump.AutoSize = true;
+			this.lightBump.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.lightBump.Location = new System.Drawing.Point(433, 200);
+			this.lightBump.Name = "lightBump";
+			this.lightBump.Size = new System.Drawing.Size(20, 22);
+			this.lightBump.TabIndex = 20;
+			this.lightBump.Text = "L";
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.label1.Location = new System.Drawing.Point(563, 200);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(23, 22);
+			this.label1.TabIndex = 21;
+			this.label1.Text = "R";
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.label2.Location = new System.Drawing.Point(493, 200);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(22, 22);
+			this.label2.TabIndex = 22;
+			this.label2.Text = "C";
 			// 
 			// CyBotGUI
 			// 
@@ -304,6 +339,9 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoSize = true;
 			this.ClientSize = new System.Drawing.Size(2152, 1201);
+			this.Controls.Add(this.label2);
+			this.Controls.Add(this.label1);
+			this.Controls.Add(this.lightBump);
 			this.Controls.Add(this.macroForward);
 			this.Controls.Add(this.right90);
 			this.Controls.Add(this.left90);
@@ -360,6 +398,9 @@
 		private System.Windows.Forms.ToolStripMenuItem funToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem victoryDanceToolStripMenuItem;
 		private System.Windows.Forms.Button macroForward;
+		private System.Windows.Forms.Label lightBump;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label label2;
 	}
 }
 
