@@ -1,4 +1,4 @@
-﻿using OxyPlot.WindowsForms;
+﻿﻿using OxyPlot.WindowsForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -359,7 +359,7 @@ namespace Cybot_GUI
 					SocketClient.WriteException(ex);
 				}
 
-				WriteToLog("Command Response: " + r+ "\n");
+				WriteToLog("Command Response: " + r + "\n");
 			} catch (Exception a) {
 				WriteToLog("INVALID FORMAT " + a.Message + "\n");
 			}
@@ -452,6 +452,7 @@ namespace Cybot_GUI
 		{
 			WriteToLog("Clearing log data...\n");
 			Radar.ClearData();
+			ResetSensorLabels();
 		}
 
 		//Clear Logs
