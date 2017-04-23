@@ -34,6 +34,7 @@ namespace Cybot_GUI
 			Radar = new RadarChart(radarPlot, log);
 
 			SetMovementControlsEnabled(false);
+			ResetSensorLabels();
 
 			//DEBUG TODO
 			//connectionIP.Text = "127.0.0.1";
@@ -89,10 +90,44 @@ namespace Cybot_GUI
 
 			AutoScroll(logBox);
 		}
+		/// <summary>
+		/// Resets the line bump labels.
+		/// </summary>
+		private void ResetLineBumpLabels(){
+			lineBumpR.BackColor = Color.White;
+			lineBumpL.BackColor = Color.White;
+			lineBumpFR.BackColor = Color.White;
+			lineBumpFL.BackColor = Color.White;
+		}
+
+		/// <summary>
+		/// Resets the light bump labels.
+		/// </summary>
+		private void ResetLightBumpLabels()
+		{
+			lightBumpL.BackColor = Color.White;
+			lightBumpR.BackColor = Color.White;
+
+			lightBumpCL.BackColor = Color.White;
+			lightBumpCR.BackColor = Color.White;
+
+			lightBumpFR.BackColor = Color.White;
+			lightBumpFL.BackColor = Color.White;
+		}
+
+		/// <summary>
+		/// Resets the sensor labels.
+		/// </summary>
+		private void ResetSensorLabels()
+		{
+			ResetLineBumpLabels();
+			ResetLightBumpLabels();
+		}
 
 		//Connect
 		private async void ConnectButton_Click(object sender, EventArgs e)
 		{
+			ResetSensorLabels();
 			if (ConnectButton.Text == connectText) {
 				// connected
 				ConnectButton.Text = disconnectText;
@@ -113,7 +148,61 @@ namespace Cybot_GUI
 
 					var log = new Progress<string>(s => WriteToLog(s + "\n", true));
 					var scandata = new Progress<string>(Radar.AddData);
-					var sensordata = new Progress<string>(); //todo
+
+					// set line bump labels
+					var linesensor = new Progress<UInt16>((type) => {
+						ResetLineBumpLabels();
+						switch (type) {
+							case 1:
+								// left
+								lineBumpL.BackColor = Color.Red;
+								break;
+							case 2:
+								// front left
+								lineBumpFL.BackColor = Color.Red;
+								break;
+							case 3:
+								// front right
+								lineBumpFR.BackColor = Color.Red;
+								break;
+							case 4:
+								// right
+								lineBumpR.BackColor = Color.Red;
+								break;
+						}
+					});
+
+					// set bump light labels
+					var bumplightsensor = new Progress<UInt16>((type) => {
+						ResetLightBumpLabels();
+						switch (type) {
+							case 1:
+								// left
+								lightBumpL.BackColor = Color.Red;
+								break;
+							case 2:
+								// front left
+								lightBumpFL.BackColor = Color.Red;
+								break;
+							case 3:
+								// center left
+								lightBumpCL.BackColor = Color.Red;
+								break;
+							case 4:
+								// center right
+								lightBumpCR.BackColor = Color.Red;
+								break;
+							case 5:
+								// front right
+								lightBumpFR.BackColor = Color.Red;
+								break;
+							case 6:
+								// right
+								lightBumpR.BackColor = Color.Red;
+								break;
+						}
+					});
+					var sensordata = new Progress<string>((s) => LocationMap.ProcessData(s, log, linesensor, bumplightsensor));
 					await Task.Factory.StartNew(() => client.ReceiveThread(log, scandata, ReceiveThreadCancel.Token, sensordata), TaskCreationOptions.LongRunning);
 					// the above line will block further lines until its thread ends
 
@@ -164,6 +253,7 @@ namespace Cybot_GUI
 		private void forwardButton_Click(object sender, EventArgs e)
 		{
 			try {
+				ResetSensorLabels();
 				WriteToLog("Moving forward 50mm\n");
 
 				String r = client.SendCommand("m");
@@ -191,6 +281,7 @@ namespace Cybot_GUI
 		{
 			try
 			{
+				ResetSensorLabels();
 				WriteToLog("Moving forward 300mm\n");
 
 				String r = client.SendCommand("M");

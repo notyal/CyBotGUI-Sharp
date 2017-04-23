@@ -204,7 +204,7 @@ namespace Cybot_GUI
 					}
 
 					Console.WriteLine(serialData);
-					ProcessData(log, scandata, serialData);
+					ProcessData(log, scandata, serialData, sensordata);
 
 
 					//ProcessData(log, scandata, bytes, size);
@@ -240,10 +240,11 @@ namespace Cybot_GUI
 						scandata.Report(inputSerial);
 						return;
 					}
-				case 'C':
+				//case 'C':
 				case 'N':
 				case 'G':
-				case 'B': {
+				//case 'B': 
+					{
 						if (sensordata != null) sensordata.Report(inputSerial);
 						else log.Report("[unprocessed sensor]: " + inputSerial + "\n");
 						return;
