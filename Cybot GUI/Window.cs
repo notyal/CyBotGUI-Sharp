@@ -248,11 +248,11 @@ namespace Cybot_GUI
 			Radar.ClearData();
 			WriteToLog("Scanning...\n");
 			client.WriteLine("S");
-			for (int i = 0; i < 100; i++)
-			{
-				System.Threading.Thread.Sleep(275);
-				progressBar.Increment(i);
-			}
+			//for (int i = 0; i < 100; i++)
+			//{
+			//	System.Threading.Thread.Sleep(275);
+			//	progressBar.Increment(i);
+			//}
 		}
 		// ----- END MOVEMENT BUTTONS ----------------------------------------------------------------------------------
 
