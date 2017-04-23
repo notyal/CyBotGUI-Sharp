@@ -153,7 +153,7 @@ namespace Cybot_GUI
 			// attempt to process the data
 			try {
 				ScanData d = ProcessData(s);
-				log.Report(String.Format("F:{0} T:{1} D:{2}", d.DegBegin, d.DegEnd, d.Dist));
+				log.Report(String.Format("F:{0} T:{1} D:{2}", d.DegBegin, d.DegEnd, d.Dist/10.0));
 
 				// add points to graph
 				LineSeries l = new LineSeries();
@@ -175,6 +175,10 @@ namespace Cybot_GUI
 		public void ClearData()
 		{
 			Model.Series.Clear();
+			
+			// set default position
+			SetBotPosition(0, 90);
+
 			Refresh();
 		}
 

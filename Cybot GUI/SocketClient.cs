@@ -19,7 +19,7 @@ namespace Cybot_GUI
 		/// <summary>
 		/// The command timeout in ms. Default is 10000ms.
 		/// </summary>
-		public uint CommandTimeout = 10000;
+		public uint CommandTimeout = 3000;
 
 		/// <summary>
 		/// The last exception that was thrown.

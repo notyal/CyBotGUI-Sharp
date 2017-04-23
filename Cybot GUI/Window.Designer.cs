@@ -49,6 +49,11 @@
 			this.scanButton = new System.Windows.Forms.Button();
 			this.colorDialog1 = new System.Windows.Forms.ColorDialog();
 			this.getData = new System.Windows.Forms.Button();
+			this.left90 = new System.Windows.Forms.Button();
+			this.right90 = new System.Windows.Forms.Button();
+			this.funToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.victoryDanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.macroForward = new System.Windows.Forms.Button();
 			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -92,7 +97,8 @@
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.graphToolStripMenuItem,
-            this.musicToolStripMenuItem});
+            this.musicToolStripMenuItem,
+            this.funToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
 			this.menuStrip1.Padding = new System.Windows.Forms.Padding(12, 3, 0, 3);
@@ -112,14 +118,14 @@
 			// clearLogsToolStripMenuItem
 			// 
 			this.clearLogsToolStripMenuItem.Name = "clearLogsToolStripMenuItem";
-			this.clearLogsToolStripMenuItem.Size = new System.Drawing.Size(192, 30);
+			this.clearLogsToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
 			this.clearLogsToolStripMenuItem.Text = "Clear Logs";
 			this.clearLogsToolStripMenuItem.Click += new System.EventHandler(this.clearLogsToolStripMenuItem_Click);
 			// 
 			// exitAltF4ToolStripMenuItem
 			// 
 			this.exitAltF4ToolStripMenuItem.Name = "exitAltF4ToolStripMenuItem";
-			this.exitAltF4ToolStripMenuItem.Size = new System.Drawing.Size(192, 30);
+			this.exitAltF4ToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
 			this.exitAltF4ToolStripMenuItem.Text = "Exit (Alt+F4)";
 			this.exitAltF4ToolStripMenuItem.Click += new System.EventHandler(this.exitAltF4ToolStripMenuItem_Click);
 			// 
@@ -159,21 +165,23 @@
 			// playSong1ToolStripMenuItem
 			// 
 			this.playSong1ToolStripMenuItem.Name = "playSong1ToolStripMenuItem";
-			this.playSong1ToolStripMenuItem.Size = new System.Drawing.Size(191, 30);
+			this.playSong1ToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
 			this.playSong1ToolStripMenuItem.Text = "Play Song 1";
 			this.playSong1ToolStripMenuItem.Click += new System.EventHandler(this.playSong1ToolStripMenuItem_Click);
 			// 
 			// playSong2ToolStripMenuItem
 			// 
 			this.playSong2ToolStripMenuItem.Name = "playSong2ToolStripMenuItem";
-			this.playSong2ToolStripMenuItem.Size = new System.Drawing.Size(191, 30);
+			this.playSong2ToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
 			this.playSong2ToolStripMenuItem.Text = "Play Song 2";
+			this.playSong2ToolStripMenuItem.Click += new System.EventHandler(this.playSong2ToolStripMenuItem_Click_1);
 			// 
 			// playSong3ToolStripMenuItem
 			// 
 			this.playSong3ToolStripMenuItem.Name = "playSong3ToolStripMenuItem";
-			this.playSong3ToolStripMenuItem.Size = new System.Drawing.Size(191, 30);
+			this.playSong3ToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
 			this.playSong3ToolStripMenuItem.Text = "Play Song 3";
+			this.playSong3ToolStripMenuItem.Click += new System.EventHandler(this.playSong3ToolStripMenuItem_Click);
 			// 
 			// forwardButton
 			// 
@@ -182,7 +190,7 @@
 			this.forwardButton.Name = "forwardButton";
 			this.forwardButton.Size = new System.Drawing.Size(183, 35);
 			this.forwardButton.TabIndex = 4;
-			this.forwardButton.Text = "Forward (mm)";
+			this.forwardButton.Text = "Micro Forward";
 			this.forwardButton.UseVisualStyleBackColor = true;
 			this.forwardButton.Click += new System.EventHandler(this.forwardButton_Click);
 			// 
@@ -193,7 +201,7 @@
 			this.rightButton.Name = "rightButton";
 			this.rightButton.Size = new System.Drawing.Size(183, 35);
 			this.rightButton.TabIndex = 5;
-			this.rightButton.Text = "Right (Degrees)";
+			this.rightButton.Text = "Right 10";
 			this.rightButton.UseVisualStyleBackColor = true;
 			this.rightButton.Click += new System.EventHandler(this.rightButton_Click);
 			// 
@@ -204,7 +212,7 @@
 			this.leftButton.Name = "leftButton";
 			this.leftButton.Size = new System.Drawing.Size(183, 35);
 			this.leftButton.TabIndex = 6;
-			this.leftButton.Text = "Left (Degrees)";
+			this.leftButton.Text = "Left 10";
 			this.leftButton.UseVisualStyleBackColor = true;
 			this.leftButton.Click += new System.EventHandler(this.leftButton_Click);
 			// 
@@ -244,12 +252,61 @@
 			this.getData.UseVisualStyleBackColor = true;
 			this.getData.Click += new System.EventHandler(this.getData_Click);
 			// 
+			// left90
+			// 
+			this.left90.Location = new System.Drawing.Point(218, 140);
+			this.left90.Name = "left90";
+			this.left90.Size = new System.Drawing.Size(136, 37);
+			this.left90.TabIndex = 16;
+			this.left90.Text = "Left 90";
+			this.left90.UseVisualStyleBackColor = true;
+			this.left90.Click += new System.EventHandler(this.left90_Click);
+			// 
+			// right90
+			// 
+			this.right90.Location = new System.Drawing.Point(218, 183);
+			this.right90.Name = "right90";
+			this.right90.Size = new System.Drawing.Size(136, 37);
+			this.right90.TabIndex = 17;
+			this.right90.Text = "Right 90";
+			this.right90.UseVisualStyleBackColor = true;
+			this.right90.Click += new System.EventHandler(this.right90_Click);
+			// 
+			// funToolStripMenuItem
+			// 
+			this.funToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.victoryDanceToolStripMenuItem});
+			this.funToolStripMenuItem.Name = "funToolStripMenuItem";
+			this.funToolStripMenuItem.Size = new System.Drawing.Size(53, 29);
+			this.funToolStripMenuItem.Text = "Fun";
+			// 
+			// victoryDanceToolStripMenuItem
+			// 
+			this.victoryDanceToolStripMenuItem.BackColor = System.Drawing.Color.Lime;
+			this.victoryDanceToolStripMenuItem.Name = "victoryDanceToolStripMenuItem";
+			this.victoryDanceToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
+			this.victoryDanceToolStripMenuItem.Text = "Victory Dance";
+			this.victoryDanceToolStripMenuItem.Click += new System.EventHandler(this.victoryDanceToolStripMenuItem_Click);
+			// 
+			// macroForward
+			// 
+			this.macroForward.Location = new System.Drawing.Point(218, 95);
+			this.macroForward.Name = "macroForward";
+			this.macroForward.Size = new System.Drawing.Size(136, 35);
+			this.macroForward.TabIndex = 18;
+			this.macroForward.Text = "Macro Forward";
+			this.macroForward.UseVisualStyleBackColor = true;
+			this.macroForward.Click += new System.EventHandler(this.macroForward_Click);
+			// 
 			// CyBotGUI
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoSize = true;
 			this.ClientSize = new System.Drawing.Size(2152, 1201);
+			this.Controls.Add(this.macroForward);
+			this.Controls.Add(this.right90);
+			this.Controls.Add(this.left90);
 			this.Controls.Add(this.getData);
 			this.Controls.Add(this.scanButton);
 			this.Controls.Add(this.radarPlot);
@@ -298,6 +355,11 @@
 		private System.Windows.Forms.ToolStripMenuItem playSong2ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem playSong3ToolStripMenuItem;
 		private System.Windows.Forms.Button getData;
+		private System.Windows.Forms.Button left90;
+		private System.Windows.Forms.Button right90;
+		private System.Windows.Forms.ToolStripMenuItem funToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem victoryDanceToolStripMenuItem;
+		private System.Windows.Forms.Button macroForward;
 	}
 }
 

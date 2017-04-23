@@ -150,8 +150,12 @@ namespace Cybot_GUI
 		{
 			scanButton.Enabled = b;
 			forwardButton.Enabled = b;
+			macroForward.Enabled = b;
 			rightButton.Enabled = b;
 			leftButton.Enabled = b;
+			left90.Enabled = b;
+			right90.Enabled = b;
+			getData.Enabled = b;
 		}
 
 
@@ -160,9 +164,9 @@ namespace Cybot_GUI
 		private void forwardButton_Click(object sender, EventArgs e)
 		{
 			try {
-				WriteToLog("Moving forward\n");
+				WriteToLog("Moving forward 50mm\n");
 
-				String r = client.SendCommand("M");
+				String r = client.SendCommand("m");
 
 				// parse response
 				try {
@@ -183,13 +187,46 @@ namespace Cybot_GUI
 
 		}
 
+		private void macroForward_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				WriteToLog("Moving forward 300mm\n");
+
+				String r = client.SendCommand("M");
+
+				// parse response
+				try
+				{
+					String[] res = r.Split(' ');
+					// todo handle rotations
+					if (res.Length >= 1)
+					{
+						int dist = Int16.Parse(res[1]);
+						Radar.BotDistX += dist;
+					}
+				}
+				catch (Exception ex)
+				{
+					SocketClient.WriteException(ex);
+				}
+
+				WriteToLog("Command Response: " + r + "\n");
+			}
+			catch (Exception a)
+			{
+				WriteToLog("INVALID FORMAT " + a.Message + "\n");
+			}
+
+		}
+
 		//Left Button
 		private void leftButton_Click(object sender, EventArgs e)
 		{
 			try {
 				WriteToLog("Turning left\n");
 
-				String r = client.SendCommand("L");
+				String r = client.SendCommand("l");
 
 				// parse response
 				try {
@@ -216,7 +253,7 @@ namespace Cybot_GUI
 			try {
 				WriteToLog("Turning right\n");
 
-				String r = client.SendCommand("R");
+				String r = client.SendCommand("r");
 
 				// parse response
 				try {
@@ -235,6 +272,71 @@ namespace Cybot_GUI
 			} catch (Exception a) {
 				WriteToLog("INVALID FORMAT " + a.Message + "\n");
 			}
+		}
+
+		private void left90_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				WriteToLog("Turning left\n");
+
+				String r = client.SendCommand("L");
+
+				// parse response
+				try
+				{
+					String[] res = r.Split(' ');
+					if (res.Length >= 1)
+					{
+						int lAmt = Int16.Parse(res[1]);
+						// todo handle rotations
+						//Radar.BotDistX += dist;
+					}
+				}
+				catch (Exception ex)
+				{
+					SocketClient.WriteException(ex);
+				}
+
+				WriteToLog("Command Response: " + r + "\n");
+			}
+			catch (Exception a)
+			{
+				WriteToLog("INVALID FORMAT " + a.Message + "\n");
+			}
+		}
+
+		private void right90_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				WriteToLog("Turning right 90\n");
+
+				String r = client.SendCommand("R");
+
+				// parse response
+				try
+				{
+					String[] res = r.Split(' ');
+					if (res.Length >= 1)
+					{
+						int lAmt = Int16.Parse(res[1]);
+						// todo handle rotations
+						//Radar.BotDistX += dist;
+					}
+				}
+				catch (Exception ex)
+				{
+					SocketClient.WriteException(ex);
+				}
+
+				WriteToLog("Command Response: " + r + "\n");
+			}
+			catch (Exception a)
+			{
+				WriteToLog("INVALID FORMAT " + a.Message + "\n");
+			}
+
 		}
 
 		//Scan Button
@@ -325,11 +427,25 @@ namespace Cybot_GUI
 			WriteToLog("Playing Melee Theme...\n");
 			client.WriteLine("X");
 		}
-		private void playSong2ToolStripMenuItem_Click(object sender, EventArgs e)
+
+		private void playSong2ToolStripMenuItem_Click_1(object sender, EventArgs e)
 		{
 			WriteToLog("Playing Gamecube Theme...\n");
 			client.WriteLine("Y");
 		}
+
+		private void victoryDanceToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			WriteToLog("We think we are winning\n");
+			client.WriteLine("V");
+		}
+
+		private void playSong3ToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			WriteToLog("All Stars\n");
+			client.WriteLine("Z");
+		}
+
 
 	}
 }
