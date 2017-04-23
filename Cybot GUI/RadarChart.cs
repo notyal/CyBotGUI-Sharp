@@ -21,7 +21,7 @@ namespace Cybot_GUI
 		{
 			public uint DegBegin;
 			public uint DegEnd;
-			public uint Dist;
+			public float Dist;
 		}
 
 		PlotView Plot;
@@ -212,7 +212,7 @@ namespace Cybot_GUI
 			ScanData ret;
 			ret.DegBegin = UInt16.Parse(data[1]);
 			ret.DegEnd = UInt16.Parse(data[2]);
-			ret.Dist = UInt16.Parse(data[3]);
+			ret.Dist = float.Parse(data[3]);
 			return ret;
 
 
