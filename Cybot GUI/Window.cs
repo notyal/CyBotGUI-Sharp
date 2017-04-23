@@ -218,8 +218,7 @@ namespace Cybot_GUI
 		private void rightButton_Click(object sender, EventArgs e)
 		{
 			try {
-				int rV = Convert.ToInt16(rightValue.Text);
-				if (rV > 0) WriteToLog("Turning right " + rV + " degrees...\n");
+				if (rV > 0) WriteToLog("Turning right\n");
 
 				String r = client.SendCommand("R" + rV);
 
@@ -248,11 +247,6 @@ namespace Cybot_GUI
 			Radar.ClearData();
 			WriteToLog("Scanning...\n");
 			client.WriteLine("S");
-			//for (int i = 0; i < 100; i++)
-			//{
-			//	System.Threading.Thread.Sleep(275);
-			//	progressBar.Increment(i);
-			//}
 		}
 		// ----- END MOVEMENT BUTTONS ----------------------------------------------------------------------------------
 
@@ -321,6 +315,12 @@ namespace Cybot_GUI
 			var pngExporter = new OxyPlot.WindowsForms.PngExporter { Width = 600, Height = 400, Background = OxyPlot.OxyColors.White };
 			var bitmap = pngExporter.ExportToBitmap(Radar.GetPlotModel());
 			Clipboard.SetImage(bitmap);
+		}
+
+		private void playSong1ToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			WriteToLog("Playing Melee Theme...\n");
+			client.WriteLine("Y");
 		}
 	}
 }

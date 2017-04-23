@@ -38,20 +38,16 @@
 			this.graphToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.saveGraphPNGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.clearGraphToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-			this.forwardButton = new System.Windows.Forms.Button();
-			this.rightButton = new System.Windows.Forms.Button();
-			this.leftButton = new System.Windows.Forms.Button();
-			this.forwardValue = new System.Windows.Forms.TextBox();
-			this.leftValue = new System.Windows.Forms.TextBox();
-			this.rightValue = new System.Windows.Forms.TextBox();
-			this.radarPlot = new OxyPlot.WindowsForms.PlotView();
-			this.scanButton = new System.Windows.Forms.Button();
-			this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-			this.progressBar = new System.Windows.Forms.ProgressBar();
 			this.musicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.playSong1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.playSong2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.playSong3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.forwardButton = new System.Windows.Forms.Button();
+			this.rightButton = new System.Windows.Forms.Button();
+			this.leftButton = new System.Windows.Forms.Button();
+			this.radarPlot = new OxyPlot.WindowsForms.PlotView();
+			this.scanButton = new System.Windows.Forms.Button();
+			this.colorDialog1 = new System.Windows.Forms.ColorDialog();
 			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -149,6 +145,35 @@
 			this.clearGraphToolStripMenuItem1.Text = "Clear Graph";
 			this.clearGraphToolStripMenuItem1.Click += new System.EventHandler(this.clearGraphToolStripMenuItem1_Click);
 			// 
+			// musicToolStripMenuItem
+			// 
+			this.musicToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.playSong1ToolStripMenuItem,
+            this.playSong2ToolStripMenuItem,
+            this.playSong3ToolStripMenuItem});
+			this.musicToolStripMenuItem.Name = "musicToolStripMenuItem";
+			this.musicToolStripMenuItem.Size = new System.Drawing.Size(70, 29);
+			this.musicToolStripMenuItem.Text = "Music";
+			// 
+			// playSong1ToolStripMenuItem
+			// 
+			this.playSong1ToolStripMenuItem.Name = "playSong1ToolStripMenuItem";
+			this.playSong1ToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
+			this.playSong1ToolStripMenuItem.Text = "Play Song 1";
+			this.playSong1ToolStripMenuItem.Click += new System.EventHandler(this.playSong1ToolStripMenuItem_Click);
+			// 
+			// playSong2ToolStripMenuItem
+			// 
+			this.playSong2ToolStripMenuItem.Name = "playSong2ToolStripMenuItem";
+			this.playSong2ToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
+			this.playSong2ToolStripMenuItem.Text = "Play Song 2";
+			// 
+			// playSong3ToolStripMenuItem
+			// 
+			this.playSong3ToolStripMenuItem.Name = "playSong3ToolStripMenuItem";
+			this.playSong3ToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
+			this.playSong3ToolStripMenuItem.Text = "Play Song 3";
+			// 
 			// forwardButton
 			// 
 			this.forwardButton.Location = new System.Drawing.Point(20, 95);
@@ -182,37 +207,6 @@
 			this.leftButton.UseVisualStyleBackColor = true;
 			this.leftButton.Click += new System.EventHandler(this.leftButton_Click);
 			// 
-			// forwardValue
-			// 
-			this.forwardValue.Location = new System.Drawing.Point(171, 95);
-			this.forwardValue.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.forwardValue.MaxLength = 4;
-			this.forwardValue.Name = "forwardValue";
-			this.forwardValue.Size = new System.Drawing.Size(64, 26);
-			this.forwardValue.TabIndex = 7;
-			this.forwardValue.Text = "100";
-			this.forwardValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			// 
-			// leftValue
-			// 
-			this.leftValue.Location = new System.Drawing.Point(171, 140);
-			this.leftValue.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.leftValue.Name = "leftValue";
-			this.leftValue.Size = new System.Drawing.Size(64, 26);
-			this.leftValue.TabIndex = 8;
-			this.leftValue.Text = "90";
-			this.leftValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			// 
-			// rightValue
-			// 
-			this.rightValue.Location = new System.Drawing.Point(171, 189);
-			this.rightValue.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.rightValue.Name = "rightValue";
-			this.rightValue.Size = new System.Drawing.Size(64, 26);
-			this.rightValue.TabIndex = 9;
-			this.rightValue.Text = "90";
-			this.rightValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			// 
 			// radarPlot
 			// 
 			this.radarPlot.Location = new System.Drawing.Point(490, 42);
@@ -237,52 +231,13 @@
 			this.scanButton.UseVisualStyleBackColor = true;
 			this.scanButton.Click += new System.EventHandler(this.scanButton_Click);
 			// 
-			// progressBar
-			// 
-			this.progressBar.Location = new System.Drawing.Point(20, 229);
-			this.progressBar.Name = "progressBar";
-			this.progressBar.Size = new System.Drawing.Size(432, 25);
-			this.progressBar.TabIndex = 14;
-			// 
-			// musicToolStripMenuItem
-			// 
-			this.musicToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.playSong1ToolStripMenuItem,
-            this.playSong2ToolStripMenuItem,
-            this.playSong3ToolStripMenuItem});
-			this.musicToolStripMenuItem.Name = "musicToolStripMenuItem";
-			this.musicToolStripMenuItem.Size = new System.Drawing.Size(70, 29);
-			this.musicToolStripMenuItem.Text = "Music";
-			// 
-			// playSong1ToolStripMenuItem
-			// 
-			this.playSong1ToolStripMenuItem.Name = "playSong1ToolStripMenuItem";
-			this.playSong1ToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
-			this.playSong1ToolStripMenuItem.Text = "Play Song 1";
-			// 
-			// playSong2ToolStripMenuItem
-			// 
-			this.playSong2ToolStripMenuItem.Name = "playSong2ToolStripMenuItem";
-			this.playSong2ToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
-			this.playSong2ToolStripMenuItem.Text = "Play Song 2";
-			// 
-			// playSong3ToolStripMenuItem
-			// 
-			this.playSong3ToolStripMenuItem.Name = "playSong3ToolStripMenuItem";
-			this.playSong3ToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
-			this.playSong3ToolStripMenuItem.Text = "Play Song 3";
-			// 
 			// CyBotGUI
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1394, 706);
-			this.Controls.Add(this.progressBar);
 			this.Controls.Add(this.scanButton);
 			this.Controls.Add(this.radarPlot);
-			this.Controls.Add(this.rightValue);
-			this.Controls.Add(this.leftValue);
-			this.Controls.Add(this.forwardValue);
 			this.Controls.Add(this.leftButton);
 			this.Controls.Add(this.rightButton);
 			this.Controls.Add(this.forwardButton);
@@ -317,16 +272,12 @@
 		private System.Windows.Forms.Button forwardButton;
 		private System.Windows.Forms.Button rightButton;
 		private System.Windows.Forms.Button leftButton;
-		private System.Windows.Forms.TextBox forwardValue;
-		private System.Windows.Forms.TextBox leftValue;
-		private System.Windows.Forms.TextBox rightValue;
 		private OxyPlot.WindowsForms.PlotView radarPlot;
 		private System.Windows.Forms.ToolStripMenuItem graphToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem saveGraphPNGToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem clearGraphToolStripMenuItem1;
 		private System.Windows.Forms.Button scanButton;
 		private System.Windows.Forms.ColorDialog colorDialog1;
-		private System.Windows.Forms.ProgressBar progressBar;
 		private System.Windows.Forms.ToolStripMenuItem musicToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem playSong1ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem playSong2ToolStripMenuItem;
