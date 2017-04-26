@@ -1,8 +1,15 @@
 ﻿using System;
 namespace Cybot_GUI
 {
+	/// <summary>
+	/// Location map.
+	/// </summary>
 	public class LocationMap
 	{
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:Cybot_GUI.LocationMap"/> class.
+		/// </summary>
 		public LocationMap()
 		{
 		}
@@ -11,7 +18,9 @@ namespace Cybot_GUI
 		/// Processes the sensordata.
 		/// </summary>
 		/// <param name="s">sensordata.</param>
-		/// <param name="log">log output.</param>
+		/// <param name="log">log progress output.</param>
+		/// <param name="linesensor">Line sensor progress output.</param>
+		/// <param name="bumplightsensor">Bump light sensor progress output.</param>
 		public static void ProcessData(string s,
 		                               IProgress<string> log,
 		                               IProgress<UInt16> linesensor,

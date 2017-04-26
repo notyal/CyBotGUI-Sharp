@@ -12,6 +12,9 @@ using System.Windows.Forms;
 
 namespace Cybot_GUI
 {
+	/// <summary>
+	/// CyBot GUI.
+	/// </summary>
 	public partial class CyBotGUI : Form
 	{
 		// connection button strings
