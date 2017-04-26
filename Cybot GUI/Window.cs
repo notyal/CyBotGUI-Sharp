@@ -123,6 +123,13 @@ namespace Cybot_GUI
 		}
 
 		//Connect
+		/// <summary>
+		/// Click handler for Connection Button.
+		/// Async task to handle the connection thread.
+		/// Will switch text to resemble a disconnect button when connected.
+		/// </summary>
+		/// <param name="sender">Sender Object.</param>
+		/// <param name="e">EventArgs.</param>
 		private async void ConnectButton_Click(object sender, EventArgs e)
 		{
 			ResetSensorLabels();
@@ -248,6 +255,11 @@ namespace Cybot_GUI
 
 		// ----- MOVEMENT BUTTONS --------------------------------------------------------------------------------------
 		//Forward Button
+		/// <summary>
+		/// Click handler for Forward button.
+		/// </summary>
+		/// <param name="sender">Sender Object.</param>
+		/// <param name="e">EventArgs.</param>
 		private void forwardButton_Click(object sender, EventArgs e)
 		{
 			try {
@@ -275,6 +287,11 @@ namespace Cybot_GUI
 
 		}
 
+		/// <summary>
+		/// Click handler for Macro Forward button.
+		/// </summary>
+		/// <param name="sender">Sender Object.</param>
+		/// <param name="e">EventArgs.</param>
 		private void macroForward_Click(object sender, EventArgs e)
 		{
 			try
@@ -310,6 +327,11 @@ namespace Cybot_GUI
 		}
 
 		//Left Button
+		/// <summary>
+		/// Click handler for Left Button.
+		/// </summary>
+		/// <param name="sender">Sender Object.</param>
+		/// <param name="e">EventArgs.</param>
 		private void leftButton_Click(object sender, EventArgs e)
 		{
 			try {
@@ -337,6 +359,11 @@ namespace Cybot_GUI
 		}
 
 		//Right Button
+		/// <summary>
+		/// Click Handler for Right 90 button.
+		/// </summary>
+		/// <param name="sender">Sender Object.</param>
+		/// <param name="e">EventArgs.</param>
 		private void rightButton_Click(object sender, EventArgs e)
 		{
 			try {
@@ -363,6 +390,11 @@ namespace Cybot_GUI
 			}
 		}
 
+		/// <summary>
+		/// Click handler for Left 90 button.
+		/// </summary>
+		/// <param name="sender">Sender Object.</param>
+		/// <param name="e">EventArgs.</param>
 		private void left90_Click(object sender, EventArgs e)
 		{
 			try
@@ -395,6 +427,11 @@ namespace Cybot_GUI
 			}
 		}
 
+		/// <summary>
+		/// Click handler for Right 90 Button.
+		/// </summary>
+		/// <param name="sender">Sender Object.</param>
+		/// <param name="e">EventArgs.</param>
 		private void right90_Click(object sender, EventArgs e)
 		{
 			try
@@ -428,7 +465,11 @@ namespace Cybot_GUI
 
 		}
 
-		//Scan Button
+		/// <summary>
+		/// Click Handler for Scan button.
+		/// </summary>
+		/// <param name="sender">Sender Object.</param>
+		/// <param name="e">EventArgs.</param>
 		private void scanButton_Click(object sender, EventArgs e)
 		{
 			Radar.ClearData();
@@ -436,6 +477,11 @@ namespace Cybot_GUI
 			client.WriteLine("S");
 		}
 
+		/// <summary>
+		/// Click handler for getData button.
+		/// </summary>
+		/// <param name="sender">Sender Object.</param>
+		/// <param name="e">EventArgs.</param>
 		private void getData_Click(object sender, EventArgs e)
 		{
 			WriteToLog("Sending Data...\n");
@@ -445,7 +491,12 @@ namespace Cybot_GUI
 
 
 		// ----- TOOL STRIP --------------------------------------------------------------------------------------------
-		//Clear Graph
+
+		/// <summary>
+		/// Handler for Clear Graph Menu Item
+		/// </summary>
+		/// <param name="sender">Sender Object.</param>
+		/// <param name="e">EventArgs.</param>
 		private void clearGraphToolStripMenuItem1_Click(object sender, EventArgs e)
 		{
 			WriteToLog("Clearing log data...\n");
@@ -453,19 +504,31 @@ namespace Cybot_GUI
 			ResetSensorLabels();
 		}
 
-		//Clear Logs
+		/// <summary>
+		/// Handler for Clear Logs Menu Item
+		/// </summary>
+		/// <param name="sender">Sender Object.</param>
+		/// <param name="e">EventArgs.</param>
 		private void clearLogsToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			logBox.Items.Clear();
 		}
 
-		//Exit
+		/// <summary>
+		/// Handler for Exit Menu Item
+		/// </summary>
+		/// <param name="sender">Sender Object.</param>
+		/// <param name="e">EventArgs.</param>
 		private void exitAltF4ToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			ExitApplication();
 		}
 
-		//Save Graph to PNG
+		/// <summary>
+		/// Handler for "Save Graph to PNG" menu item.
+		/// </summary>
+		/// <param name="sender">Sender Object.</param>
+		/// <param name="e">EventArgs.</param>
 		private void saveGraphPNGToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			var pngExporter = new OxyPlot.WindowsForms.PngExporter { Width = 600, Height = 400, Background = OxyPlot.OxyColors.White };
@@ -474,7 +537,12 @@ namespace Cybot_GUI
 			pngExporter.ExportToFile(Radar.GetPlotModel(), "graphPlot");
 		}
 
-		//If you click on the graph it will copy it to clipboard.
+		/// <summary>
+		/// Click handler for Radar Plot.
+		/// If you click on the graph it will copy it to clipboard.
+		/// </summary>
+		/// <param name="sender">Sender Object.</param>
+		/// <param name="e">EventArgs.</param>
 		private void radarPlot_Click(object sender, EventArgs e)
 		{
 			var pngExporter = new OxyPlot.WindowsForms.PngExporter { Width = 600, Height = 400, Background = OxyPlot.OxyColors.White };
@@ -482,14 +550,24 @@ namespace Cybot_GUI
 			Clipboard.SetImage(bitmap);
 		}
 
-		//Play Smash Bros Melee Theme
+		/// <summary>
+		/// Click handler for "Play Song 1" menu item.
+		/// Will play the Smash Bros Melee Theme.
+		/// </summary>
+		/// <param name="sender">Sender Object.</param>
+		/// <param name="e">EventArgs.</param>
 		private void playSong1ToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			WriteToLog("Playing Melee Theme...\n");
 			client.WriteLine("X");
 		}
 
-		//Play Gamecube boot song.
+		/// <summary>
+		/// Click handler for "Play Song 2" menu item.
+		/// Will play the Gamecube boot song.
+		/// </summary>
+		/// <param name="sender">Sender Object.</param>
+		/// <param name="e">EventArgs.</param>
 		private void playSong2ToolStripMenuItem_Click_1(object sender, EventArgs e)
 		{
 			WriteToLog("Playing Gamecube Theme...\n");
@@ -497,13 +575,23 @@ namespace Cybot_GUI
 		}
 
 		//Does a little dance and plays our two songs
+		/// <summary>
+		/// Click handler for "Victory Dance" menu item.
+		/// </summary>
+		/// <param name="sender">Sender Object.</param>
+		/// <param name="e">EventArgs.</param>
 		private void victoryDanceToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			WriteToLog("We think we are winning\n");
 			client.WriteLine("V");
 		}
 
-		//Should have played All Stars by smash mouth but never worked, on the bot side, weirdly.
+		/// <summary>
+		/// Click handler for "Play Song 3" menu item.
+		/// Should have played All Stars by smash mouth but never worked, on the bot side, weirdly.
+		/// </summary>
+		/// <param name="sender">Sender Object.</param>
+		/// <param name="e">EventArgs.</param>
 		private void playSong3ToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			//Song never loaded correctly on the bot, so DEPRECIATED.
@@ -515,11 +603,21 @@ namespace Cybot_GUI
 
 
 		// ----- LOGBOX ------------------------------------------------------------------------------------------------
+		/// <summary>
+		/// Selected index changed handler for logBox.
+		/// </summary>
+		/// <param name="sender">Sender Object.</param>
+		/// <param name="e">EventArgs.</param>
 		private void logBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
 
 		}
 
+		/// <summary>
+		/// DoubleClick handler for logBox.
+		/// </summary>
+		/// <param name="sender">Sender Object.</param>
+		/// <param name="e">EventArgs.</param>
 		private void logBox_DoubleClick(object sender, EventArgs e)
 		{
 
@@ -528,11 +626,21 @@ namespace Cybot_GUI
 
 
 		// ----- CONNECTION IP -----------------------------------------------------------------------------------------
+		/// <summary>
+		/// Mask input handler for Connection IP.
+		/// </summary>
+		/// <param name="sender">Sender Object.</param>
+		/// <param name="e">EventArgs.</param>
 		private void connectionIP_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
 		{
 
 		}
 
+		/// <summary>
+		/// KeyDown handler for Connection IP.
+		/// </summary>
+		/// <param name="sender">Sender Object.</param>
+		/// <param name="e">EventArgs.</param>
 		private void connectionIP_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Enter) {

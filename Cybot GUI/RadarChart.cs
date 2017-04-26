@@ -11,6 +11,7 @@ namespace Cybot_GUI
 {
 	/// <summary>
 	/// Handles data processing from a SocketClient to a RadarChart.
+	/// For use to display the incoming scan data on the plot.
 	/// </summary>
 	public class RadarChart
 	{

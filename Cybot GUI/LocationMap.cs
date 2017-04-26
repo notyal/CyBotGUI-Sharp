@@ -113,6 +113,10 @@ namespace Cybot_GUI
 
 		}
 
+		/// <summary>
+		/// Throws exception for use when the data format is incorrect.
+		/// </summary>
+		/// <param name="data">Data that was incorrect.</param>
 		public static void DataLengthIncorrect(string[] data)
 		{
 			throw new FormatException(String.Format("[{0}] data is incorrect, length is {1}", data[0], data.Length));
