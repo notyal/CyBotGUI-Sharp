@@ -30,10 +30,13 @@ namespace Cybot_GUI
 			InitializeComponent();
 			ConnectButton.Text = connectText;
 
+			//Initializes our log and graph
 			var log = new Progress<string>(s => WriteToLog(s + "\n", true));
 			Radar = new RadarChart(radarPlot, log);
 
+			//Waits for connection to enable buttons
 			SetMovementControlsEnabled(false);
+			//Initializes sensors
 			ResetSensorLabels();
 
 			//DEBUG TODO
@@ -59,11 +62,6 @@ namespace Cybot_GUI
 			ReceiveThreadCancel.Cancel();
 
 			Application.Exit();
-		}
-
-		private void Window_Load(object sender, EventArgs e)
-		{
-
 		}
 
 		/// <summary>
@@ -475,6 +473,44 @@ namespace Cybot_GUI
 			Clipboard.SetImage(bitmap);
 			pngExporter.ExportToFile(Radar.GetPlotModel(), "graphPlot");
 		}
+
+		//If you click on the graph it will copy it to clipboard.
+		private void radarPlot_Click(object sender, EventArgs e)
+		{
+			var pngExporter = new OxyPlot.WindowsForms.PngExporter { Width = 600, Height = 400, Background = OxyPlot.OxyColors.White };
+			var bitmap = pngExporter.ExportToBitmap(Radar.GetPlotModel());
+			Clipboard.SetImage(bitmap);
+		}
+
+		//Play Smash Bros Melee Theme
+		private void playSong1ToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			WriteToLog("Playing Melee Theme...\n");
+			client.WriteLine("X");
+		}
+
+		//Play Gamecube boot song.
+		private void playSong2ToolStripMenuItem_Click_1(object sender, EventArgs e)
+		{
+			WriteToLog("Playing Gamecube Theme...\n");
+			client.WriteLine("Y");
+		}
+
+		//Does a little dance and plays our two songs
+		private void victoryDanceToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			WriteToLog("We think we are winning\n");
+			client.WriteLine("V");
+		}
+
+		//Should have played All Stars by smash mouth but never worked, on the bot side, weirdly.
+		private void playSong3ToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			//Song never loaded correctly on the bot, so DEPRECIATED.
+			WriteToLog("All Stars\n");
+			client.WriteLine("Z");
+		}
+
 		// ----- END TOOL STRIP ----------------------------------------------------------------------------------------
 
 
@@ -505,39 +541,6 @@ namespace Cybot_GUI
 			}
 		}
 		// ----- END CONNECTION IP -------------------------------------------------------------------------------------
-
-
-		private void radarPlot_Click(object sender, EventArgs e)
-		{
-			var pngExporter = new OxyPlot.WindowsForms.PngExporter { Width = 600, Height = 400, Background = OxyPlot.OxyColors.White };
-			var bitmap = pngExporter.ExportToBitmap(Radar.GetPlotModel());
-			Clipboard.SetImage(bitmap);
-		}
-
-		private void playSong1ToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			WriteToLog("Playing Melee Theme...\n");
-			client.WriteLine("X");
-		}
-
-		private void playSong2ToolStripMenuItem_Click_1(object sender, EventArgs e)
-		{
-			WriteToLog("Playing Gamecube Theme...\n");
-			client.WriteLine("Y");
-		}
-
-		private void victoryDanceToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			WriteToLog("We think we are winning\n");
-			client.WriteLine("V");
-		}
-
-		private void playSong3ToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			WriteToLog("All Stars\n");
-			client.WriteLine("Z");
-		}
-
 
 	}
 }

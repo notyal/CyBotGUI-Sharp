@@ -468,7 +468,7 @@
 			this.Name = "CyBotGUI";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "CyBot GUI";
-			this.Load += new System.EventHandler(this.Window_Load);
+//			this.Load += new System.EventHandler(this.Window_Load);
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
 			this.ResumeLayout(false);
