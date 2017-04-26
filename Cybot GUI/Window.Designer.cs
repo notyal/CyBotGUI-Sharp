@@ -42,6 +42,8 @@
 			this.playSong1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.playSong2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.playSong3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.funToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.victoryDanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.forwardButton = new System.Windows.Forms.Button();
 			this.rightButton = new System.Windows.Forms.Button();
 			this.leftButton = new System.Windows.Forms.Button();
@@ -51,8 +53,6 @@
 			this.getData = new System.Windows.Forms.Button();
 			this.left90 = new System.Windows.Forms.Button();
 			this.right90 = new System.Windows.Forms.Button();
-			this.funToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.victoryDanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.macroForward = new System.Windows.Forms.Button();
 			this.lineBumpL = new System.Windows.Forms.Label();
 			this.lineBumpR = new System.Windows.Forms.Label();
@@ -72,7 +72,7 @@
 			// connectionIP
 			// 
 			this.connectionIP.Location = new System.Drawing.Point(26, 42);
-			this.connectionIP.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+			this.connectionIP.Margin = new System.Windows.Forms.Padding(5);
 			this.connectionIP.Name = "connectionIP";
 			this.connectionIP.Size = new System.Drawing.Size(397, 26);
 			this.connectionIP.TabIndex = 11;
@@ -83,7 +83,7 @@
 			// ConnectButton
 			// 
 			this.ConnectButton.Location = new System.Drawing.Point(437, 42);
-			this.ConnectButton.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+			this.ConnectButton.Margin = new System.Windows.Forms.Padding(5);
 			this.ConnectButton.Name = "ConnectButton";
 			this.ConnectButton.Size = new System.Drawing.Size(144, 31);
 			this.ConnectButton.TabIndex = 1;
@@ -96,7 +96,7 @@
 			this.logBox.FormattingEnabled = true;
 			this.logBox.ItemHeight = 20;
 			this.logBox.Location = new System.Drawing.Point(26, 262);
-			this.logBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+			this.logBox.Margin = new System.Windows.Forms.Padding(5);
 			this.logBox.Name = "logBox";
 			this.logBox.Size = new System.Drawing.Size(621, 824);
 			this.logBox.TabIndex = 2;
@@ -114,7 +114,7 @@
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
 			this.menuStrip1.Padding = new System.Windows.Forms.Padding(12, 3, 0, 3);
-			this.menuStrip1.Size = new System.Drawing.Size(2152, 35);
+			this.menuStrip1.Size = new System.Drawing.Size(2142, 35);
 			this.menuStrip1.TabIndex = 3;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
@@ -130,14 +130,14 @@
 			// clearLogsToolStripMenuItem
 			// 
 			this.clearLogsToolStripMenuItem.Name = "clearLogsToolStripMenuItem";
-			this.clearLogsToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
+			this.clearLogsToolStripMenuItem.Size = new System.Drawing.Size(192, 30);
 			this.clearLogsToolStripMenuItem.Text = "Clear Logs";
 			this.clearLogsToolStripMenuItem.Click += new System.EventHandler(this.clearLogsToolStripMenuItem_Click);
 			// 
 			// exitAltF4ToolStripMenuItem
 			// 
 			this.exitAltF4ToolStripMenuItem.Name = "exitAltF4ToolStripMenuItem";
-			this.exitAltF4ToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
+			this.exitAltF4ToolStripMenuItem.Size = new System.Drawing.Size(192, 30);
 			this.exitAltF4ToolStripMenuItem.Text = "Exit (Alt+F4)";
 			this.exitAltF4ToolStripMenuItem.Click += new System.EventHandler(this.exitAltF4ToolStripMenuItem_Click);
 			// 
@@ -177,29 +177,45 @@
 			// playSong1ToolStripMenuItem
 			// 
 			this.playSong1ToolStripMenuItem.Name = "playSong1ToolStripMenuItem";
-			this.playSong1ToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
+			this.playSong1ToolStripMenuItem.Size = new System.Drawing.Size(191, 30);
 			this.playSong1ToolStripMenuItem.Text = "Play Song 1";
 			this.playSong1ToolStripMenuItem.Click += new System.EventHandler(this.playSong1ToolStripMenuItem_Click);
 			// 
 			// playSong2ToolStripMenuItem
 			// 
 			this.playSong2ToolStripMenuItem.Name = "playSong2ToolStripMenuItem";
-			this.playSong2ToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
+			this.playSong2ToolStripMenuItem.Size = new System.Drawing.Size(191, 30);
 			this.playSong2ToolStripMenuItem.Text = "Play Song 2";
 			this.playSong2ToolStripMenuItem.Click += new System.EventHandler(this.playSong2ToolStripMenuItem_Click_1);
 			// 
 			// playSong3ToolStripMenuItem
 			// 
 			this.playSong3ToolStripMenuItem.Name = "playSong3ToolStripMenuItem";
-			this.playSong3ToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
+			this.playSong3ToolStripMenuItem.Size = new System.Drawing.Size(191, 30);
 			this.playSong3ToolStripMenuItem.Text = "Play Song 3";
 			this.playSong3ToolStripMenuItem.Click += new System.EventHandler(this.playSong3ToolStripMenuItem_Click);
+			// 
+			// funToolStripMenuItem
+			// 
+			this.funToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.victoryDanceToolStripMenuItem});
+			this.funToolStripMenuItem.Name = "funToolStripMenuItem";
+			this.funToolStripMenuItem.Size = new System.Drawing.Size(53, 29);
+			this.funToolStripMenuItem.Text = "Fun";
+			// 
+			// victoryDanceToolStripMenuItem
+			// 
+			this.victoryDanceToolStripMenuItem.BackColor = System.Drawing.Color.Lime;
+			this.victoryDanceToolStripMenuItem.Name = "victoryDanceToolStripMenuItem";
+			this.victoryDanceToolStripMenuItem.Size = new System.Drawing.Size(206, 30);
+			this.victoryDanceToolStripMenuItem.Text = "Victory Dance";
+			this.victoryDanceToolStripMenuItem.Click += new System.EventHandler(this.victoryDanceToolStripMenuItem_Click);
 			// 
 			// forwardButton
 			// 
 			this.forwardButton.BackColor = System.Drawing.Color.LimeGreen;
 			this.forwardButton.Location = new System.Drawing.Point(94, 76);
-			this.forwardButton.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+			this.forwardButton.Margin = new System.Windows.Forms.Padding(5);
 			this.forwardButton.Name = "forwardButton";
 			this.forwardButton.Size = new System.Drawing.Size(136, 35);
 			this.forwardButton.TabIndex = 4;
@@ -210,7 +226,7 @@
 			// rightButton
 			// 
 			this.rightButton.Location = new System.Drawing.Point(168, 138);
-			this.rightButton.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+			this.rightButton.Margin = new System.Windows.Forms.Padding(5);
 			this.rightButton.Name = "rightButton";
 			this.rightButton.Size = new System.Drawing.Size(136, 35);
 			this.rightButton.TabIndex = 5;
@@ -221,7 +237,7 @@
 			// leftButton
 			// 
 			this.leftButton.Location = new System.Drawing.Point(26, 140);
-			this.leftButton.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+			this.leftButton.Margin = new System.Windows.Forms.Padding(5);
 			this.leftButton.Name = "leftButton";
 			this.leftButton.Size = new System.Drawing.Size(136, 35);
 			this.leftButton.TabIndex = 6;
@@ -232,7 +248,7 @@
 			// radarPlot
 			// 
 			this.radarPlot.Location = new System.Drawing.Point(648, 40);
-			this.radarPlot.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+			this.radarPlot.Margin = new System.Windows.Forms.Padding(5);
 			this.radarPlot.Name = "radarPlot";
 			this.radarPlot.PanCursor = System.Windows.Forms.Cursors.Hand;
 			this.radarPlot.Size = new System.Drawing.Size(1374, 1132);
@@ -284,22 +300,6 @@
 			this.right90.Text = "Right 90";
 			this.right90.UseVisualStyleBackColor = true;
 			this.right90.Click += new System.EventHandler(this.right90_Click);
-			// 
-			// funToolStripMenuItem
-			// 
-			this.funToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.victoryDanceToolStripMenuItem});
-			this.funToolStripMenuItem.Name = "funToolStripMenuItem";
-			this.funToolStripMenuItem.Size = new System.Drawing.Size(53, 29);
-			this.funToolStripMenuItem.Text = "Fun";
-			// 
-			// victoryDanceToolStripMenuItem
-			// 
-			this.victoryDanceToolStripMenuItem.BackColor = System.Drawing.Color.Lime;
-			this.victoryDanceToolStripMenuItem.Name = "victoryDanceToolStripMenuItem";
-			this.victoryDanceToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
-			this.victoryDanceToolStripMenuItem.Text = "Victory Dance";
-			this.victoryDanceToolStripMenuItem.Click += new System.EventHandler(this.victoryDanceToolStripMenuItem_Click);
 			// 
 			// macroForward
 			// 
@@ -435,7 +435,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoSize = true;
-			this.ClientSize = new System.Drawing.Size(2152, 1201);
+			this.ClientSize = new System.Drawing.Size(2142, 1201);
 			this.Controls.Add(this.label11);
 			this.Controls.Add(this.label10);
 			this.Controls.Add(this.lightBumpL);
@@ -463,12 +463,11 @@
 			this.Controls.Add(this.menuStrip1);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MainMenuStrip = this.menuStrip1;
-			this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+			this.Margin = new System.Windows.Forms.Padding(5);
 			this.MaximizeBox = false;
 			this.Name = "CyBotGUI";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "CyBot GUI";
-//			this.Load += new System.EventHandler(this.Window_Load);
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
 			this.ResumeLayout(false);
